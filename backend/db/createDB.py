@@ -7,8 +7,8 @@ class DB:
         self.__c = self.__db.cursor()
         
         self.__c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables= self.__c.fetchall()
-        tables_name =[table[0] for table in tables]
+        tables = self.__c.fetchall()
+        tables_name = [table[0] for table in tables]
         if (len(tables_name) <3):
             self.__c.execute("""CREATE TABLE Users (
           userID INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -5,7 +5,11 @@ from backend.services.Compiler import Compiler
 router = APIRouter()
 compiler = Compiler()
 
-@router.post("/")
+@router.post(
+    "/",
+    description="Метод компиляции кода",
+    tags=["compiler"]
+)
 async def compile_code_route(request: CodeRequest):
     result = compiler.compile_code(request.language, request.code)
     if result["status"] == "error":
