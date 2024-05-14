@@ -10,8 +10,8 @@ async def get_user():
 @router.post("/register/")
 async def register(user: UserCreate):
     db_user = await get_user()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Username already registered")
+    # if db_user:
+    #     raise HTTPException(status_code=400, detail="Username already registered")
     password = user.password # В реальном приложении здесь должно быть хэширование пароля
     # await create_user(user.username, hashed_password)
     return {"message": f"User {db_user}-{password} created successfully"}
@@ -21,7 +21,7 @@ async def login(user: UserAuth):
     # db_user = await get_user(user.username)
     # if not db_user or db_user['hashed_password'] != user.password:
     #     return {"message": "Incorrect username or password"}
-    if user.auth == "user" and user.password == "pass":
+    if user.login == "user" and user.password == "pass":
         return {"message": "ok"}
     else:
         return {"message": "no"}
