@@ -7,8 +7,8 @@ class DB:
         self.__c = self.__db.cursor()
         
         self.__c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables= self.__c.fetchall()
-        tables_name =[table[0] for table in tables]
+        tables = self.__c.fetchall()
+        tables_name = [table[0] for table in tables]
         if (len(tables_name) <3):
 
             for i in range(0, len(tables_name)):
