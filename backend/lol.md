@@ -1,6 +1,6 @@
 Стркутра проекта:
 
-Backend/
+compiler_api/
 │
 ├── compilers/
 │   ├── __init__.py
