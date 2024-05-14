@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from ..models.Compiler import CodeRequest
-from ..services.Compiler import Compiler
+from backend.models.Compiler import CodeRequest
+from backend.services.Compiler import Compiler
 
 router = APIRouter()
 compiler = Compiler()
