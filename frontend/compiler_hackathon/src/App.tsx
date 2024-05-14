@@ -1,11 +1,11 @@
 import "./App.css"
-import { Link, Route, Routes, useNavigate } from "react-router-dom"
+import {Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
-import { LoginPage } from "./pages/LoginPage"
-import { RegistrationPage } from "./pages/RegistrationPage"
-import { HomePage } from "./pages/HomePage"
-import { NotFoundPage } from "./pages/NotFoundPage"
+import { LoginPage } from "./pages/Login/LoginPage"
+import { RegistrationPage } from "./pages/Registration/RegistrationPage"
+import { HomePage } from "./pages/Home/HomePage"
+import { NotFoundPage } from "./pages/NotFound/NotFoundPage"
 
 function App() {
 
