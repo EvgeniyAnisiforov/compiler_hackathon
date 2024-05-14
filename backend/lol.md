@@ -1,5 +1,6 @@
 Стркутра проекта:
 
-![image](https://github.com/EvgeniyAnisiforov/compiler_hackathon/assets/110033694/502db5a7-d115-4406-a48b-32864c458876)
+![image](https://github.com/EvgeniyAnisiforov/compiler_hackathon/assets/110033694/3774b4a0-c2f1-4e87-b947-bdb5ec983bef)
+
 
 
