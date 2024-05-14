@@ -4,9 +4,9 @@ backend/
 │
 ├── compilers/
 │   ├── __init__.py
-│   ├── bindings.cpp
-│   ├── compiler_module.so
-│   └── compile_code.cpp
+│   ├── bindings.cpp -- если будет с++
+│   ├── compiler_module.so -- если будет С++
+│   └── compile_code.cpp -- иначе compile_code.py
 │
 ├── db/
 │   ├── __init__.py
