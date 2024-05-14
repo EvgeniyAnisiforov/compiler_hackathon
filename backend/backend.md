@@ -6,7 +6,7 @@ backend/
 │   ├── __init__.py
 │   ├── bindings.cpp -- если будет с++
 │   ├── compiler_module.so -- если будет С++
-│   └── compile_code.cpp -- иначе compile_code.py
+│   └── compile_code.cpp -- иначе compile_code.py Лия
 │
 ├── db/
 │   ├── __init__.py
