@@ -8,7 +8,7 @@ backend/
 │
 ├── db/
 │   ├── __init__.py
-│   └── database.py
+│   └── database.py  Соня
 │
 ├── models/
 │   ├── __init__.py
