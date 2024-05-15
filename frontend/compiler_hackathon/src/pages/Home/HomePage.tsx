@@ -3,6 +3,7 @@ import { useState, useRef, useEffect  } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import style from "./HomePage.module.css"
+import RadioForm from "../../components/RadioForm";
 
 const HomePage: FC<{}> = (): ReactElement => {
 
@@ -10,7 +11,7 @@ const HomePage: FC<{}> = (): ReactElement => {
     const goRegistr = () => navigate("/registration")
     const goHome = () => navigate("/")
 
-    const [defaultCode, setDefaultCode] = useState(`def bubble_sort(arr):
+    const [defaultCode, _setDefaultCode] = useState(`def bubble_sort(arr):
     n = len(arr)
 
     for i in range(n):
@@ -73,36 +74,40 @@ print(arr)
                     </div>
                 </div>
 
+                <div className={style["HomePage__wrapperCompiler--flex"]}>
+                    <RadioForm/>
+                    <div >
+                        <div className={style["HomePage__containerCompiler--flex"]}>
+                            <div className={style["HomePage__compilerWrapper"]} style={{ display: 'flex', justifyContent: "center" }}>
+                                <div className={style["HomePage__compilerNumber"]}>
+                                    <div ref={lineNumbersRef} className={style["HomePage__compilerNumber--margin"]}>
+                                        {codeLines.map((_, index) => (
+                                        <div style={{fontFamily:"monospace"}} key={index}>{index + 1}</div> 
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className={style["HomePage__containerCompilerTextCode"]}>
+                                    <textarea
+                                            ref={textAreaRef}
+                                            value={code}
+                                            onChange={(e) => setCode(e.target.value)}
+                                            onPaste={handlePaste}
+                                            className={style["HomePage__compilerTextCode"]}
+                                        />
+                                </div>
+                            </div>
 
-                <div className={style["HomePage__containerCompiler--flex"]}>
-                    <div className={style["HomePage__compilerWrapper"]} style={{ display: 'flex', justifyContent: "center" }}>
-                        <div className={style["HomePage__compilerNumber"]}>
-                            <div ref={lineNumbersRef} className={style["HomePage__compilerNumber--margin"]}>
-                                {codeLines.map((_, index) => (
-                                <div style={{fontFamily:"monospace"}} key={index}>{index + 1}</div> 
-                                ))}
+                            <div className={style["HomePage__containerOutput"]}>
+                                <div className={style["HomePage__compilerWrapperOutput"]}>
+                                    Нажмите запустить, что бы увидеть результат
+                                </div>
                             </div>
                         </div>
-                        <div className={style["HomePage__containerCompilerTextCode"]}>
-                            <textarea
-                                    ref={textAreaRef}
-                                    value={code}
-                                    onChange={(e) => setCode(e.target.value)}
-                                    onPaste={handlePaste}
-                                    className={style["HomePage__compilerTextCode"]}
-                                />
+                        <div className={style["HomePage__containerButton"]}>
+                            <button className={style["HomePage__button"]}>запустить</button>
+                            <button className={style["HomePage__button"]}>скорость</button>
                         </div>
                     </div>
-
-                    <div className={style["HomePage__containerOutput"]}>
-                        <div className={style["HomePage__compilerWrapperOutput"]}>
-                            Нажмите запустить, что бы увидеть результат
-                        </div>
-                    </div>
-                </div>
-                <div className={style["HomePage__containerButton"]}>
-                    <button className={style["HomePage__button"]}>запустить</button>
-                    <button className={style["HomePage__button"]}>скорость</button>
                 </div>
             </div>
 
