@@ -80,6 +80,10 @@ const HomePage: FC<{}> = (): ReactElement => {
                         </div>
                     </div>
                 </div>
+                <div className={style["HomePage__containerButton"]}>
+                    <button className={style["HomePage__button"]}>запустить</button>
+                    <button className={style["HomePage__button"]}>скорость</button>
+                </div>
             </div>
 
             <ul className={style["circles"]}>
