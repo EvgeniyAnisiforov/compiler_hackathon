@@ -16,6 +16,7 @@
 .Homepage__containerHeader--flex{
     width: 100%;
     height: 50px;
+    margin-bottom: 50px;
 
     display: flex;
     justify-content: space-between;
@@ -40,13 +41,54 @@
     background-color: #9cd982;
 }
 
+.HomePage__compilerWrapper{
+    width: 600px;
+    height: 700px;
+    margin: 0 auto;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,1);
+    background-color: rgba(220, 220, 220, .2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
+    z-index: 1;
+}
+
+.HomePage__compilerInput{
+    white-space: pre;
+    background-color: rgba(220, 220, 220, .2);
+    backdrop-filter: blur(3px);
+}
+.HomePage__compilerNumber{
+    margin-top: 2.5%;
+    height: 95%;
+    padding: 10px 10px 0 15px;
+    font-size: 16px;
+    line-height: 1.2; 
+    background-color: rgba(220, 220, 220, .3);
+    color: #fff;
+    border-right: 1px solid;
+    border-radius: 20px 0 0 20px;
+}
+
+.HomePage__compilerTextCode{
+    width: 85%;
+    margin-top: 2.5%;
+    height: 95%;
+    font-family: monospace;
+    white-space: pre;
+    padding: 10px;  
+    font-size: 16px; 
+    background-color: rgba(220, 220, 220, .3);
+    color: #fff;
+    resize: none;
+    border-radius: 0 10px 10px 0;
+}
 
 .area{
     background: #4e54c8;  
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
     width: 100%;
     height:100vh;
-    /* position: relative; */
 }
 
 .circles{
@@ -56,7 +98,6 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    /* background-color: #000; */
 }
 
 .circles li{
