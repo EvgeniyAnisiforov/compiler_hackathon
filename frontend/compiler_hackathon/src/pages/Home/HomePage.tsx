@@ -10,7 +10,27 @@ const HomePage: FC<{}> = (): ReactElement => {
     const goRegistr = () => navigate("/registration")
     const goHome = () => navigate("/")
 
-    const [code, setCode] = useState('');
+    const [defaultCode, setDefaultCode] = useState(`def bubble_sort(arr):
+    n = len(arr)
+
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Пример использования
+arr = [64, 34, 25, 12, 22, 11, 90]
+
+print("Исходный массив:")
+print(arr)
+
+bubble_sort(arr)
+
+print("Отсортированный массив:")
+print(arr)
+`);
+    const [code, setCode] = useState(defaultCode);
+    
     const codeLines = code.split('\n'); 
     const textAreaRef = useRef<HTMLTextAreaElement>(null); // Уточнили тип рефа
     const lineNumbersRef = useRef<HTMLDivElement>(null);     // Уточнили тип рефа
