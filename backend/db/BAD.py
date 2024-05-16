@@ -1,6 +1,8 @@
 import aiosqlite
+import sqlite3
 import asyncio
 import platform
+
 if platform.system()=='Windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 DB_NAME = "DBStandart.db"
@@ -32,16 +34,21 @@ async def Create_DB():
         await db.commit()
 
 #регистрация
-async def CreateUser(login,passwd,name,surname):
+async def CreateUser(login, passwd, name, surname):
     async with aiosqlite.connect(DB_NAME) as db:        
-        query= ("SELECT userID FROM Users WHERE login = ?")
+        query= ("SELECT userID FROM Users WHERE login = ?")    
         userID = await db.execute_fetchall(query,(login))
         if(len(userID) != 0): 
-            print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
+            #print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
             return None
+
+        await db.execute('BEGIN TRANSACTION') 
         await db.execute("INSERT INTO Users(login,passwd,name,surname) VALUES(?,?,?,?)",(login,passwd,name,surname))      
-        print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
-        cur_user = CurUser()
+        userID = await db.execute_fetchall("SELECT last_insert_rowid()")
+        #print(userID[0][0])
+        #print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
+        cur_user = CurUser(userID[0][0])
+        await db.execute('COMMIT') 
         await db.commit()
         return cur_user
     
@@ -53,11 +60,24 @@ async def CheckUser(login, passwd):
         userID = await db.execute_fetchall(query,(login,passwd))
         if(len(userID) == 0): 
             return None
-        cur_user = CurUser()
+        cur_user = CurUser(userID[0][0])
+        #print(userID[0][0])
         return cur_user
     
 #важный класс нужен конструктор
 class CurUser:
+   
+    def __init__(self,userID):
+        self.__db = sqlite3.connect(DB_NAME)
+        self.__c = self.__db.cursor()
+        self.__attribute = self.__c.execute("""SELECT * FROM Users  
+                LEFT JOIN AllSettings USING(userID) WHERE userID  = ? """, (userID,)).fetchall()
+        print(self.__attribute)
+    
+    def GetAtrb(self):
+        return self.__attribute
+
+        
     def smth():
         print("help")
 
@@ -66,7 +86,8 @@ class CurUser:
 #тестирование
 async def main():
     task_1 = asyncio.create_task(Create_DB())
-    task_2 =asyncio.create_task(CreateUser("9","9","9","9"))
+    task_2 =asyncio.create_task(CreateUser("3","9","9","9"))
+    task_2 =asyncio.create_task(CheckUser("3","9"))
     await task_1
     await task_2
 asyncio.run(main())
