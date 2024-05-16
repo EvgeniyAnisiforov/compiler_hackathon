@@ -8,6 +8,8 @@ class Compiler:
             output = "java"
         elif language == "python":
             output = "python"
+	elif language = "js":
+		output = "js"
         else:
             return {"status": "error", "message": "Unsupported language"}
         return {"status": "success", "output": output}
