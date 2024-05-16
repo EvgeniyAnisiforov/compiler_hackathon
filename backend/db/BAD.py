@@ -14,83 +14,115 @@ DB_NAME = "DBStandart.db"
 #по завершению работы нужно обновить RAM AND TIME
 # не забудь закрыть соединение с бд в деструкторе
 #если что то не работает в createbd добавь курсор
-async def Create_DB():
-    async with aiosqlite.connect(DB_NAME) as db:
-        await db.execute("""CREATE TABLE IF NOT EXISTS Users (
+#важный класс нужен конструктор
+class CurUser:
+    def __init__(self,userID):
+        self.__userID = userID
+        self.__db = sqlite3.connect(DB_NAME)
+        self.__c = self.__db.cursor()
+        self.UpdateAtrb()
+        
+    
+    def UpdateAtrb(self):
+        self.__db.commit()
+        self.__attribute = self.__c.execute(f"""SELECT login, passwd,name,surname,
+                last_code,lang, RAM, time, thema_color FROM Users  
+                LEFT JOIN AllSettings USING(userID) WHERE userID  = {self.__userID} """).fetchone()
+        
+        #print(self.__attribute)
+
+    def GetAtrb(self):
+        print (self.__attribute)
+        return self.__attribute
+    
+    def SetVebAtrb(self, last_code, RAM, time, lang=None,thema_color=None):
+        if (lang == None): lang = self.__attribute[5]
+        if (thema_color == None): thema_color = self.__attribute[8]
+        self.__c.execute("""UPDATE AllSettings SET 
+            last_code=?,lang=?, RAM=?, time=?, thema_color=? WHERE userID= ?""",(last_code, lang,RAM, time, thema_color,self.__userID))
+        
+        self.UpdateAtrb()
+        #
+      
+        print(self.GetAtrb())
+        
+    def SetAtrb(self,login = None, passwd = None, name = None,surname = None):
+        if (login == None): login = self.__attribute[0]
+        if (passwd == None): passwd = self.__attribute[1]
+        if (name == None): name = self.__attribute[2]
+        if (surname == None): surname = self.__attribute[3]
+        self.__c.execute("""UPDATE Users SET login =?,passwd=?,name=?,surname=?
+                          WHERE userID = ?""",(login, passwd,name,surname,self.__userID))
+        
+        self.UpdateAtrb()
+        print(self.GetAtrb())
+       
+
+def Create_DB():
+    with sqlite3.connect(DB_NAME) as db:
+        db.execute("""CREATE TABLE IF NOT EXISTS Users (
             userID INTEGER PRIMARY KEY AUTOINCREMENT,
             login VARCHAR(255) NOT NULL,
             passwd VARCHAR(255) NOT NULL,
             name VARCHAR(255),
             surname VARCHAR(255))""")
-        await db.execute("""CREATE TABLE IF NOT EXISTS AllSettings(
+        db.execute("""CREATE TABLE IF NOT EXISTS AllSettings(
             userID PRIMARY KEY,
             last_code TEXT,
-            lang TEXT CHECK( lang IN ('Cpp','Java','JavaScript','Python') ) NOT NULL,
+            lang TEXT DEFAULT NULL,
             RAM REAL,
             time REAL,
-            thema_color CHECK(thema_color IN ('#000000','#FFFFFF','#rgb')) NOT NULL DEFAULT '#rgb',
+            thema_color TEXT DEFAULT '#rgb',
             FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE
             )""")
-        await db.commit()
+        db.commit()
 
 #регистрация
-async def CreateUser(login, passwd, name, surname):
-    async with aiosqlite.connect(DB_NAME) as db:        
-        query= ("SELECT userID FROM Users WHERE login = ?")    
-        userID = await db.execute_fetchall(query,(login))
-        if(len(userID) != 0): 
+def CreateUser(login, passwd, name, surname):
+    with sqlite3.connect(DB_NAME) as db: 
+                 
+        userID = db.execute(f"SELECT userID FROM Users WHERE login = {login}").fetchone()
+        if(userID != None): 
             #print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
             return None
 
-        await db.execute('BEGIN TRANSACTION') 
-        await db.execute("INSERT INTO Users(login,passwd,name,surname) VALUES(?,?,?,?)",(login,passwd,name,surname))      
-        userID = await db.execute_fetchall("SELECT last_insert_rowid()")
+        db.execute('BEGIN TRANSACTION') 
+        db.execute("INSERT INTO Users(login,passwd,name,surname) VALUES(?,?,?,?)",(login,passwd,name,surname))      
+        userID = db.execute("SELECT last_insert_rowid()").fetchall()
         #print(userID[0][0])
         #print( await db.execute_fetchall("SELECT * FROM Users WHERE login = ?",login))
+        db.execute('COMMIT') 
+        db.commit()
         cur_user = CurUser(userID[0][0])
-        await db.execute('COMMIT') 
-        await db.commit()
+        print(db.execute(f"SELECT userID FROM Users WHERE login = {login}").fetchone())
         return cur_user
     
 
 #авторизация
-async def CheckUser(login, passwd):
-    async with aiosqlite.connect(DB_NAME) as db:        
+def CheckUser(login, passwd):
+    with sqlite3.connect(DB_NAME) as db:        
         query= ("SELECT userID FROM Users WHERE login = ? AND passwd = ?")
-        userID = await db.execute_fetchall(query,(login,passwd))
+        #print(db.execute("SELECT * FROM Users").fetchall())
+        userID = db.execute(query,(login,passwd)).fetchall()
         if(len(userID) == 0): 
             return None
         cur_user = CurUser(userID[0][0])
         #print(userID[0][0])
         return cur_user
     
-#важный класс нужен конструктор
-class CurUser:
-   
-    def __init__(self,userID):
-        self.__db = sqlite3.connect(DB_NAME)
-        self.__c = self.__db.cursor()
-        self.__attribute = self.__c.execute("""SELECT * FROM Users  
-                LEFT JOIN AllSettings USING(userID) WHERE userID  = ? """, (userID,)).fetchall()
-        print(self.__attribute)
+ 
     
-    def GetAtrb(self):
-        return self.__attribute
-
-        
-    def smth():
-        print("help")
-
 
 
 #тестирование
-async def main():
-    task_1 = asyncio.create_task(Create_DB())
-    task_2 =asyncio.create_task(CreateUser("3","9","9","9"))
-    task_2 =asyncio.create_task(CheckUser("3","9"))
-    await task_1
-    await task_2
-asyncio.run(main())
+
+    
+    
+Create_DB()
+#curUser = CreateUser("8","6","oo","oo")
+curUser = CheckUser("8","6")
+
+curUser.SetAtrb("8","5")
 
 
 # db = DB()
