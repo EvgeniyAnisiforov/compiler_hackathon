@@ -1,18 +1,10 @@
-.RegistrationPage__wrapper{
-    width: 100%;
-    height: 100vh;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 .RegistrationPage__container--white{
     width: 750px;
     height: 500px;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(255,255,255,1);
-    background-color: rgba(195, 195, 195, .1);
+    background-color: rgba(220, 220, 220, .2);
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
     z-index: 1;
@@ -22,7 +14,6 @@
     font-weight: normal;
     font-size: 35px;
     color: #fff;
-    z-index: 2;
 }
 .RegistrationPage__containerInput{
     width: 70%;
@@ -32,8 +23,6 @@
 .RegistrationPage__containerInput input{
     box-shadow: 0 0 20px rgba(255,255,255,.8);
     font-size: 17px;
-
-    
 }
 .RegistrationPage__containerText{
     width: 70%;
@@ -49,7 +38,6 @@
 .RegistrationPage__containerText a {
     color: blue;
     text-decoration: underline;
-    
 }
 .RegistrationPage__containerTextGuest{
     width: 70%;
@@ -109,7 +97,6 @@
     background: rgba(255, 255, 255, 0.5);
     animation: animate 25s linear infinite;
     bottom: -150px;
-    
 }
 
 .circles li:nth-child(1){

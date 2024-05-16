@@ -10,7 +10,7 @@ const LoginPage: FC<{}> = (): ReactElement => {
     const goHome = () => navigate("/home")
 
     return (
-        <div className={style["area"]} >
+        <div className={style["area"]}>
             <div className={style["LoginPage__container--white"]}>
                 <h3 className={style["LoginPage__h1"]}>Авторизация</h3>
                 <div className={style["LoginPage__containerInput"]}><Input placeholder="Логин" /></div>

@@ -1,0 +1,38 @@
+.RadioForm__Icon{
+    width: 60px;
+    height: 60px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 20px;
+    box-shadow: 0 0 5px rgba(255,255,255,1);
+}
+.RadioForm__IconActive{
+    box-shadow: 0 0 40px rgb(207, 231, 111);
+    transform: translateX(-30px);
+    transition: transform 0.5s ease-in-out;
+}
+.RadioForm__pythonIcon{
+    background-image: url('./../assets/img/python.svg');
+    background-size: 100%; /* чтобы картинка занимала всю область */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.RadioForm__javaIcon{
+    background-image: url('./../assets/img/java.svg');
+    background-size: 80%; /* чтобы картинка занимала всю область */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.RadioForm__cppIcon{
+    background-image: url('./../assets/img/cpp.svg');
+    background-size: 100%; /* чтобы картинка занимала всю область */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.RadioForm__jsIcon{
+    background-image: url('./../assets/img/js.svg');
+    background-size: 60%; /* чтобы картинка занимала всю область */
+    background-repeat: no-repeat;
+    background-position: center;
+}

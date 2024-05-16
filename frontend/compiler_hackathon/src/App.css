@@ -21,3 +21,10 @@ button, a{
   font-family: robotronika;
   src: url("../public/Robtronika.ttf")
 }
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
