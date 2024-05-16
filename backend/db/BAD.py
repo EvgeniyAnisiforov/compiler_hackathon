@@ -25,9 +25,9 @@ class CurUser:
     
     def UpdateAtrb(self):
         self.__db.commit()
-        self.__attribute = self.__c.execute(f"""SELECT login, passwd,name,surname,
+        self.__attribute = self.__c.execute(f"""SELECT userID, login, passwd,name,surname,
                 last_code,lang, RAM, time, thema_color FROM Users  
-                LEFT JOIN AllSettings USING(userID) WHERE userID  = {self.__userID} """).fetchone()
+                LEFT JOIN AllSettings ON Users.userID = userID WHERE AllSettings.userID  = {self.__userID} """).fetchone()
         
         #print(self.__attribute)
 
@@ -42,8 +42,7 @@ class CurUser:
             last_code=?,lang=?, RAM=?, time=?, thema_color=? WHERE userID= ?""",(last_code, lang,RAM, time, thema_color,self.__userID))
         
         self.UpdateAtrb()
-        #
-      
+
         print(self.GetAtrb())
         
     def SetAtrb(self,login = None, passwd = None, name = None,surname = None):
@@ -118,9 +117,9 @@ def CheckUser(login, passwd):
 
     
     
-Create_DB()
+#Create_DB()
 #curUser = CreateUser("8","6","oo","oo")
-curUser = CheckUser("8","6")
+curUser = CheckUser("8","5")
 
 curUser.SetAtrb("8","5")
 
