@@ -28,3 +28,6 @@ input[type="radio"] {
   appearance: none;
   outline: none;
 }
+.anticon svg {
+  display: none;
+}

@@ -6,11 +6,14 @@ import style from "./HomePage.module.css"
 import RadioForm from "../../components/RadioForm"
 import ModalChart from "../../components/ModalChart/ModalChart"
 import MenuColorIcon from "../../components/MenuColorIcon"
+import { useAppSelector } from "../../hook/hookRTK"
 
 const HomePage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
   const goRegistr = () => navigate("/registration")
   const goHome = () => navigate("/")
+
+  const backgroundColor = useAppSelector(state => state.setColor.value)
 
   const [valueModalChart, setValueModalChart] = useState<boolean>(false)
   const [defaultCode, _setDefaultCode] = useState(`def bubble_sort(arr):
@@ -66,7 +69,7 @@ print(arr)
   }, [])
 
   return (
-    <div className={style["area"]}>
+    <div className={style["area"]} style={{backgroundColor: backgroundColor}}>
       <div className={style["HomePage__wrapper"]}>
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>

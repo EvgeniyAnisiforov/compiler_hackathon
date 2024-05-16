@@ -2,6 +2,7 @@
     width: 50px;
     height: 50px;
     margin: 0 10px;
+    z-index: 100;
 }
 
 .MenuColorIcon__iconColor img{
@@ -16,11 +17,24 @@
     border-radius: 50%;
 }
 .MenuColorIcon__color1{
-    background-color: red;
+    background-color: #4e54c8;
 }
 .MenuColorIcon__color2{
-    background-color: green;
+    background-color: #f4a261;
 }
 .MenuColorIcon__color3{
-    background-color: yellow;
+    background-color: #fb6f92;
 }
+.MenuColorIcon__color4{
+    background-color: #00b4d8;
+}
+.MenuColorIcon__color5{
+    background-color: #003f88;
+}
+.MenuColorIcon__color6{
+    background-color: #588157;
+}
+.MenuColorIcon__color7{
+    background-color: #e5383b;
+}
+
