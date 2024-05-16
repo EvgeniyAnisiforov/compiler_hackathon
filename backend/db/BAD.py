@@ -1,78 +1,9 @@
 import sqlite3
-import platform
+
 
 DB_NAME = "DBStandart.db"
 
-
-
-class CurUser:
-    def __init__(self, userID):
-        self.__userID = userID
-        self.__db = sqlite3.connect(DB_NAME)
-        self.__c = self.__db.cursor()
-        self.UpdateAtrb()
-
-    def UpdateAtrb(self):
-        self.__db.commit()
-<<<<<<< HEAD
-        self.__attribute = self.__c.execute(f"""SELECT userID, login, passwd,name,surname,
-                last_code,lang, RAM, time, thema_color FROM Users  
-                LEFT JOIN AllSettings ON Users.userID = userID WHERE AllSettings.userID  = {self.__userID} """).fetchone()
-        
-        #print(self.__attribute)
-=======
-        self.__attribute = self.__c.execute(f"""SELECT login, passwd, name, surname,
-                last_code, lang, RAM, time, thema_color FROM Users  
-                LEFT JOIN AllSettings USING(userID) WHERE userID = {self.__userID} """).fetchone()
->>>>>>> 76d210fe6ed39ad1ceaac8e1196241fe03b66557
-
-    def GetAtrb(self):
-        print(self.__attribute)
-        return self.__attribute
-
-    def SetVebAtrb(self, last_code, RAM, time, lang=None, thema_color=None):
-        if lang is None: lang = self.__attribute[5]
-        if thema_color is None: thema_color = self.__attribute[8]
-
-        self.__c.execute("""UPDATE AllSettings SET 
-<<<<<<< HEAD
-            last_code=?,lang=?, RAM=?, time=?, thema_color=? WHERE userID= ?""",(last_code, lang,RAM, time, thema_color,self.__userID))
-        
-        self.UpdateAtrb()
-
-        print(self.GetAtrb())
-        
-    def SetAtrb(self,login = None, passwd = None, name = None,surname = None):
-        if (login == None): login = self.__attribute[0]
-        if (passwd == None): passwd = self.__attribute[1]
-        if (name == None): name = self.__attribute[2]
-        if (surname == None): surname = self.__attribute[3]
-        self.__c.execute("""UPDATE Users SET login =?,passwd=?,name=?,surname=?
-                          WHERE userID = ?""",(login, passwd,name,surname,self.__userID))
-        
-=======
-                            last_code = ?, lang = ?, RAM = ?, time = ?, thema_color = ?
-                            WHERE userID = ?""",
-                         (last_code, lang, RAM, time, thema_color, self.__userID))
-
->>>>>>> 76d210fe6ed39ad1ceaac8e1196241fe03b66557
-        self.UpdateAtrb()
-        print(self.GetAtrb())
-
-    def SetAtrb(self, login=None, passwd=None, name=None, surname=None):
-        if login is None: login = self.__attribute[0]
-        if passwd is None: passwd = self.__attribute[1]
-        if name is None: name = self.__attribute[2]
-        if surname is None: surname = self.__attribute[3]
-
-        self.__c.execute("""UPDATE Users SET login = ?, passwd = ?, name = ?, surname = ?
-                            WHERE userID = ?""",
-                         (login, passwd, name, surname, self.__userID))
-
-        self.UpdateAtrb()
-        print(self.GetAtrb())
-
-
+#очевидно и невероятно
 def Create_DB():
     with sqlite3.connect(DB_NAME) as db:
         db.execute("""CREATE TABLE IF NOT EXISTS Users (
@@ -84,21 +15,21 @@ def Create_DB():
         db.execute("""CREATE TABLE IF NOT EXISTS AllSettings(
             userID INTEGER PRIMARY KEY,
             last_code TEXT,
-            lang TEXT DEFAULT NULL,
-            RAM REAL,
+            lang TEXT CHECK( lang IN ('Cpp','Java','JavaScript','Python') ) DEFAULT NULL,
+            RAM INTEGER,
             time REAL,
-            thema_color TEXT DEFAULT '#rgb',
+            thema_color CHECK(thema_color IN ('#000000','#FFFFFF','#rgb')) DEFAULT '#000000',
             FOREIGN KEY (userID) REFERENCES Users(userID) ON DELETE CASCADE
             )""")
         db.commit()
 
-
+#регистрация 
 def CreateUser(login, passwd, name, surname):
     with sqlite3.connect(DB_NAME) as db:
-        userID = db.execute("SELECT userID FROM Users WHERE login = ?", (login,)).fetchone()
-        if userID is not None:
-            return None
-
+        query = "SELECT userID FROM Users WHERE login = ?"
+        query_exe = db.execute(query, (login,)).fetchone()
+        if query_exe is not None:
+            return False
         db.execute('BEGIN TRANSACTION')
         db.execute("INSERT INTO Users (login, passwd, name, surname) VALUES (?, ?, ?, ?)",
                    (login, passwd, name, surname))
@@ -106,50 +37,69 @@ def CreateUser(login, passwd, name, surname):
         db.execute("INSERT INTO AllSettings (userID) VALUES (?)", (userID,))
         db.execute('COMMIT')
         db.commit()
+        
+        return True
 
-        return CurUser(userID)
-
-
+#авторизация вариант 1
 def CheckUser(login, passwd):
     with sqlite3.connect(DB_NAME) as db:
-        query = "SELECT userID FROM Users WHERE login = ? AND passwd = ?"
-        userID = db.execute(query, (login, passwd)).fetchone()
-        if userID is None:
-            return None
+        query = "SELECT userID,name,surname FROM Users WHERE login = ? AND passwd = ?"
+        query_exe = db.execute(query, (login, passwd)).fetchone()
+        if query_exe is None:
+            return False
+        return query_exe
+#авторизация вариант 2
 
-        return CurUser(userID[0])
+#Получить все/определенные значения атрибутов в виде списка (спросить у Ильи как добавить подсказку)
+def GetAtrb(userID, *args):
+    with sqlite3.connect(DB_NAME) as db:
+        if len(args) == 0 : 
+            return db.execute("""SELECT login, passwd, name, surname,
+                last_code, lang, RAM, time, thema_color FROM Users  
+                LEFT JOIN AllSettings USING(userID) WHERE userID = ?""",(userID,)).fetchone() 
+        str_for_query=""
+        for a in args:
+            if a in ["login","passwd","name","surname","last_code","RAM","time","thema_color"]:      
+                str_for_query+= a + ','
+            else: return False 
+
+        return list(db.execute(f"SELECT {str_for_query[:-1]} FROM USERS \
+                        LEFT JOIN AllSettings USING(userID) WHERE userID = {userID}").fetchone())
+                
+#Изменить значения атрибута/ов
+def SetAtrb(userID ,login=None, passwd=None, name=None, surname=None,
+                last_code=None, lang=None, RAM=None, time=None, thema_color=None):
+    with sqlite3.connect(DB_NAME) as db:
+        atrbs = list(db.execute("""SELECT login, passwd, name, surname,
+                last_code, lang, RAM, time, thema_color FROM Users  
+                LEFT JOIN AllSettings USING(userID) WHERE userID = ?""",(userID,)).fetchone() )
+        c=0
+        for i in [login,passwd,name,surname,last_code, lang, RAM, time, thema_color]:
+            if i is not None: atrbs[c] = i
+            c+=1
+        db.execute("""UPDATE Users SET login = ?, passwd = ?, name = ?, surname = ?
+                            WHERE userID = ?""",
+                         (atrbs[0], atrbs[1], atrbs[2], atrbs[3], userID))
+        db.execute("""UPDATE AllSettings SET 
+                            last_code = ?, lang = ?, RAM = ?, time = ?, thema_color = ?
+                            WHERE userID = ?""",
+                         (atrbs[4], atrbs[5], atrbs[6], atrbs[7], atrbs[8], userID))
+        db.commit()
+        print(db.execute("""SELECT login, passwd, name, surname,
+                last_code, lang, RAM, time, thema_color FROM Users  
+                LEFT JOIN AllSettings USING(userID) WHERE userID = ?""",(userID,)).fetchone() )
+        
+                
+         
 
 
-<<<<<<< HEAD
-#тестирование
+
 
     
-    
-#Create_DB()
-#curUser = CreateUser("8","6","oo","oo")
-curUser = CheckUser("8","5")
-
-curUser.SetAtrb("8","5")
-
-
-# db = DB()
-# db.CreateUser("root", "0000")
-# db.Register("roou","0000")
-#db.__c.execute("SELECT * FROM Users")
-
-
-
-
-
-
-# c.execute ("INSERT INTO Users(login, passwd) VALUES(root, passwd) ")
-# c.execute("SELECT * FROM Users")
-#db.commit()
-#db.close()
-=======
+        
 # Тестирование
 Create_DB()
-curUser = CreateUser("8", "5", "oo", "oo") or CheckUser("8", "5")
-curUser.SetVebAtrb("6", 7, 8, 9,10)
-print('hi')
->>>>>>> 76d210fe6ed39ad1ceaac8e1196241fe03b66557
+CreateUser("8", "5", "oo", "oo") or CheckUser("8", "5")
+GetAtrb(1, "name", "RAM","yy")
+SetAtrb(1,RAM=9,name="fun",thema_color="#rgb")
+print('howareyou')
