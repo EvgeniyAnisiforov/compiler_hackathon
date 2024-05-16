@@ -4,6 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import style from "./HomePage.module.css"
 import RadioForm from "../../components/RadioForm";
+import ModalChart from "../../components/ModalChart";
 
 const HomePage: FC<{}> = (): ReactElement => {
 
@@ -11,6 +12,7 @@ const HomePage: FC<{}> = (): ReactElement => {
     const goRegistr = () => navigate("/registration")
     const goHome = () => navigate("/")
 
+    const [valueModalChart, setValueModalChart] =useState<boolean>(false)
     const [defaultCode, _setDefaultCode] = useState(`def bubble_sort(arr):
     n = len(arr)
 
@@ -105,11 +107,14 @@ print(arr)
                         </div>
                         <div className={style["HomePage__containerButton"]}>
                             <button className={style["HomePage__button"]}>запустить</button>
-                            <button className={style["HomePage__button"]}>скорость</button>
+                            <button onClick={()=>setValueModalChart(true)} className={style["HomePage__button"]}>скорость</button>
                         </div>
                     </div>
                 </div>
             </div>
+            
+
+            {valueModalChart && <ModalChart close={(e)=>setValueModalChart(e)}/>}
 
             <ul className={style["circles"]}>
                 <li></li>

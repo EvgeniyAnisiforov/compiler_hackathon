@@ -1,0 +1,19 @@
+.ModalChart__wrapperBlure{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(220, 220, 220, .0);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ModalChart__wrapperModal{
+    width: 500px;
+    height: 500px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,1);
+    background-color: #fff;
+}
