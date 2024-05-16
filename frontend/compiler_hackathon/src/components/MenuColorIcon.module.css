@@ -1,0 +1,26 @@
+.MenuColorIcon__iconColor{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+.MenuColorIcon__iconColor img{
+    width: 50px;
+    height: 50px;
+}
+
+.MenuColorIcon__container{
+    width: 70%;
+    height: 25px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.MenuColorIcon__color1{
+    background-color: red;
+}
+.MenuColorIcon__color2{
+    background-color: green;
+}
+.MenuColorIcon__color3{
+    background-color: yellow;
+}
