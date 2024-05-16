@@ -23,24 +23,39 @@
     justify-content: space-between;
     align-items: center;
 }
-
+.HomePage__containerMenuAndIcon--flex{
+    display: flex;
+}
 .HomePage__burgerMenu{
     width: 50px;
     height: 50px;
     color: #fff;
 }
+.HomePage__iconColor{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+.HomePage__iconColor img{
+    width: 50px;
+    height: 50px;
+}
+
 
 .HomePage__button{
     font-size: 20px;
-    background-color: #bfe774;
+    background-color:  rgba(255, 255, 255, 1);
+    border: 2px solid #ccc;
     padding: 7px 10px;
     margin-right: 10px;
     border-radius: 10px; 
     box-shadow: 0 0 20px rgba(255,255,255,.8);
-    color: #fff;
+    color: rgba(0,0,0,1);
 }
 .HomePage__button:hover{
-    background-color: #9cd982;
+   background-color:  rgba(220, 220, 220, .5);
+   color: #fff;
 }
 .HomePage__containerButton{
     width: 100%;
@@ -55,6 +70,7 @@
 }
 .HomePage__containerCompiler--flex{
     width: 100%;
+    border: 2px solid #ccc;
     margin: 0 auto 20px;
     border-radius: 20px;
     display: flex;
