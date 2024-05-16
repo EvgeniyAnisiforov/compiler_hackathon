@@ -3,9 +3,9 @@ import { useState, useRef, useEffect } from "react"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { useNavigate } from "react-router-dom"
 import style from "./HomePage.module.css"
-import icon from "../../assets/img/iconColor.svg"
 import RadioForm from "../../components/RadioForm"
 import ModalChart from "../../components/ModalChart/ModalChart"
+import MenuColorIcon from "../../components/MenuColorIcon"
 
 const HomePage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
@@ -71,9 +71,8 @@ print(arr)
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>
             <GiHamburgerMenu className={style["HomePage__burgerMenu"]} />
-            <div className={style["HomePage__iconColor"]}>
-                <img src={icon}/>
-            </div>
+            <MenuColorIcon/>
+            
           </div>
           <div>
             <button onClick={goHome} className={style["HomePage__button"]}>

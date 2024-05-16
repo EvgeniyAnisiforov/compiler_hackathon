@@ -6,11 +6,15 @@
     border-radius: 10px;
     margin: 0 20px;
     box-shadow: 0 0 5px rgba(255,255,255,1);
+    cursor: pointer;
+}
+.RadioForm__Icon:hover{
+    border: 1px solid #000;
 }
 .RadioForm__IconActive{
     box-shadow: 0 0 40px rgb(207, 231, 111);
     transform: translateX(-30px);
-    transition: transform 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 .RadioForm__pythonIcon{
     background-image: url('./../assets/img/python.svg');
