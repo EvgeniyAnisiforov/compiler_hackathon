@@ -1,7 +1,7 @@
 import sqlite3
 
 
-DB_NAME = "DBStandart.db"
+DB_NAME = "./DBStandart.db"
 
 #очевидно и невероятно
 def Create_DB():
