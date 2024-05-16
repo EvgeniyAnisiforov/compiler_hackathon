@@ -1,0 +1,9 @@
+.BarChart__h2{
+    padding: 20px;
+}
+
+canvas{
+    width: 80% !important;
+    height: 80% !important;
+    margin: 0 auto;
+}
