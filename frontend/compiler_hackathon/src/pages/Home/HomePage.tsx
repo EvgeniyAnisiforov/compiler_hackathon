@@ -115,7 +115,6 @@ print(arr)
             
 
             {valueModalChart && <ModalChart close={(e)=>setValueModalChart(e)}/>}
-
             <ul className={style["circles"]}>
                 <li></li>
                 <li></li>

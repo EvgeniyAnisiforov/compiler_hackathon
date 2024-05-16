@@ -11,9 +11,19 @@
     align-items: center;
 }
 .ModalChart__wrapperModal{
-    width: 500px;
+    width: 700px;
     height: 500px;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(255,255,255,1);
     background-color: #fff;
+}
+.ModalChart__containerCross{
+    display: flex;
+    justify-content: end;
+}
+.ModalChart__cross{
+    cursor: pointer;
+    padding: 20px;
+    width: 70px;
+    height: 70px;
 }
