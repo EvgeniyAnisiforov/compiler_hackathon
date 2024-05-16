@@ -1,4 +1,16 @@
 
 def f(a,*pargs,**kargs):
     print(a,pargs,kargs,sep=", ")
-f(1,2,3,x=4,y=5)
+
+
+def clar():
+    ggg = gg(5)
+    return ggg
+class gg:
+    def __init__(self, g):
+        self.__c = g
+    def Get(self):
+        print (self.__c)
+
+fi =clar()
+fi.Get()
