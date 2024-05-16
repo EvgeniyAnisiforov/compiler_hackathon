@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from backend.models.Compiler import CodeRequest
-from backend.services.Compiler import Compiler
+from backend.compilers.CompilerExec import Compiler
+
 
 router = APIRouter()
 compiler = Compiler()
@@ -11,7 +12,8 @@ compiler = Compiler()
     tags=["compiler"]
 )
 async def compile_code_route(request: CodeRequest):
-    result = compiler.compile_code(request.language, request.code)
-    if result["status"] == "error":
-        raise HTTPException(status_code=400, detail=result["message"])
-    return result
+    try:
+        result = compiler.sort(request.language.value, request.code)
+        return {"result": result}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Ошибка компиляции: {str(e)}")
