@@ -1,11 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { colorSelectorSlice } from "./colorSelector-slice"
-import { getCodeApi } from "./getCodeApi"
-import { getTimeApi } from "./getTimeApi"
-import { getColorApi } from "./getColorApi"
-import { postAuthApi } from "./postAuthApi"
-import { postRegApi } from "./postRegApi"
-import { postCodeApi } from "./postCodeApi"
+import { getCodeApi } from "./query/GET/getCodeApi"
+import { getTimeApi } from "./query/GET/getTimeApi"
+import { getColorApi } from "./query/GET/getColorApi"
+import { postAuthApi } from "./query/POST/postAuthApi"
+import { postRegApi } from "./query/POST/postRegApi"
+import { postCodeApi } from "./query/POST/postCodeApi"
+import { postColorApi } from "./query/POST/postColorApi"
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     [postAuthApi.reducerPath]: postAuthApi.reducer,
     [postRegApi.reducerPath]: postRegApi.reducer,
     [postCodeApi.reducerPath]: postCodeApi.reducer,
+    [postColorApi.reducerPath]:postColorApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -24,7 +26,8 @@ export const store = configureStore({
       getColorApi.middleware,
       postAuthApi.middleware,
       postRegApi.middleware,
-      postCodeApi.middleware
+      postCodeApi.middleware,
+      postColorApi.middleware,
     ),
   devTools: true,
 })
