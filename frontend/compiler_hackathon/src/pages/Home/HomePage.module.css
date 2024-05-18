@@ -70,7 +70,7 @@
 }
 .HomePage__compilerWrapper{
     width: 600px;
-    height: 600px;
+    height: 630px;
     border-radius: 20px 0 0 20px;
     background-color: rgba(220, 220, 220, .2);
     backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
@@ -90,10 +90,16 @@
     color: #fff;
     overflow: scroll;
 }
+.HomePage__language{
+    position: absolute;
+    left: 0;
+    padding: 20px 30px;
+    color: #ffffff;
+}
 .HomePage__compilerNumber{
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left: 5%;
-    height: 90%;
+    height: 85%;
     padding: 10px 10px 10px 15px;
     font-size: 16px;
     background-color: rgba(220, 220, 220, .4);
@@ -107,8 +113,8 @@
 
 .HomePage__containerCompilerTextCode{
     width: 100%;
-    margin-top: 5%;
-    height: 90%;
+    margin-top: 10%;
+    height: 85%;
     font-size: 16px; 
     background-color: rgba(220, 220, 220, .1);
 }
@@ -136,7 +142,7 @@
 }
 .HomePage__containerOutput{
     width: 600px;
-    height: 600px;
+    height: 630px;
     border-radius: 0 20px 20px 0;
     background-color: rgba(220, 220, 220, .2);
     backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
@@ -144,8 +150,8 @@
 }
 .HomePage__compilerWrapperOutput{
     width: 95%;
-    height: 90%;
-    margin-top: 5%;
+    height: 85%;
+    margin-top: 10%;
     padding: 15px;
     border-radius: 0 20px 20px 0;
     background-color: rgba(220, 220, 220, .4);

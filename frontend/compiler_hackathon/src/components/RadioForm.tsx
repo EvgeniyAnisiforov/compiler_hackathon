@@ -1,13 +1,28 @@
+import { FC, ReactElement } from "react"
 import { useState } from "react"
 import style from "./RadioForm.module.css"
 
-const RadioForm = () => {
+interface PropsType  {
+  language: (e:string)=>void
+}
+
+const RadioForm: FC<PropsType> = (props): ReactElement => {
   const [selectedOption, setSelectedOption] = useState<string>("python")
 
   const handleChange = (event: any) => {
     const value = event.target.value
     setSelectedOption(value)
-    console.log(value)
+    if (value == 'cpp'){
+      props.language("C++")
+      return
+    }
+    if (value == 'js'){
+      props.language("JavaScript")
+      return
+    }
+    else{
+      props.language(value)
+    }
   }
 
   return (

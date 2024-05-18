@@ -13,10 +13,12 @@ const HomePage: FC<{}> = (): ReactElement => {
   const goRegistr = () => navigate("/registration")
   const goHome = () => navigate("/")
 
+  const [language, setLanguage] = useState<string>('Python')
+
   const backgroundColor = useAppSelector(state => state.setColor.value)
 
   const [valueModalChart, setValueModalChart] = useState<boolean>(false)
-  const [defaultCode, _setDefaultCode] = useState(`def bubble_sort(arr):
+  const [defaultCode, _setDefaultCode] = useState<string>(`def bubble_sort(arr):
     n = len(arr)
 
     for i in range(n):
@@ -36,7 +38,7 @@ print("Отсортированный массив:")
 print(arr)
 `)
   const [code, setCode] = useState(defaultCode)
-  console.log(code)
+
   const codeLines = code.split("\n")
   const textAreaRef = useRef<HTMLTextAreaElement>(null) // Уточнили тип рефа
   const lineNumbersRef = useRef<HTMLDivElement>(null) // Уточнили тип рефа
@@ -74,7 +76,7 @@ print(arr)
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>
             <GiHamburgerMenu className={style["HomePage__burgerMenu"]} />
-            <MenuColorIcon/>
+            <MenuColorIcon />
             
           </div>
           <div>
@@ -88,13 +90,14 @@ print(arr)
         </div>
 
         <div className={style["HomePage__wrapperCompiler--flex"]}>
-          <RadioForm />
+          <RadioForm language={(e)=>setLanguage(e)}/>
           <div>
             <div className={style["HomePage__containerCompiler--flex"]}>
               <div
                 className={style["HomePage__compilerWrapper"]}
                 style={{ display: "flex", justifyContent: "center" }}
               >
+                <p className={style["HomePage__language"]}>{language}</p>
                 <div className={style["HomePage__compilerNumber"]}>
                   <div
                     ref={lineNumbersRef}
