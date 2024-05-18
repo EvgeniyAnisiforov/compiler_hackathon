@@ -8,6 +8,7 @@ import ModalChart from "../../components/ModalChart/ModalChart"
 import MenuColorIcon from "../../components/MenuColorIcon"
 import { useAppSelector } from "../../hook/hookRTK"
 import { python} from "./CodeExample"
+import AnimationLoading from "../../components/AnimationLoading"
 
 const HomePage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
@@ -113,7 +114,10 @@ const HomePage: FC<{}> = (): ReactElement => {
               <div className={style["HomePage__containerOutput"]}>
                 <div className={style["HomePage__compilerWrapperOutput"]}>
                   Нажмите запустить, что бы увидеть результат
+                  <div><AnimationLoading/></div>
                 </div>
+                {/* <AnimationLoading/> */}
+                
               </div>
             </div>
             <div className={style["HomePage__containerButton"]}>
