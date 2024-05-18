@@ -8,7 +8,8 @@ import ModalChart from "../../components/ModalChart/ModalChart"
 import MenuColorIcon from "../../components/MenuColorIcon"
 import { useAppSelector } from "../../hook/hookRTK"
 import { python } from "./CodeExample"
-import AnimationLoading from "../../components/AnimationLoading"
+// import AnimationLoading from "../../components/Animation/AnimationLoading"
+import AnimationBackground from "../../components/Animation/AnimationBackground"
 
 const HomePage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
@@ -131,9 +132,9 @@ const HomePage: FC<{}> = (): ReactElement => {
               <div className={style["HomePage__containerOutput"]}>
                 <div className={style["HomePage__compilerWrapperOutput"]}>
                   Нажмите запустить, что бы увидеть результат
-                  <div>
+                  {/* <div>
                     <AnimationLoading />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -151,18 +152,7 @@ const HomePage: FC<{}> = (): ReactElement => {
       </div>
 
       {valueModalChart && <ModalChart close={(e) => setValueModalChart(e)} />}
-      <ul className={style["circles"]}>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+      <AnimationBackground />
     </div>
   )
 }
