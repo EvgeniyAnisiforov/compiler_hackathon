@@ -1,6 +1,5 @@
 import "./App.css"
-import {Route, Routes, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
+import {Route, Routes } from "react-router-dom"
 
 import { LoginPage } from "./pages/Login/LoginPage"
 import { RegistrationPage } from "./pages/Registration/RegistrationPage"
@@ -9,11 +8,6 @@ import { NotFoundPage } from "./pages/NotFound/NotFoundPage"
 
 function App() {
 
-  const navigate = useNavigate();
-
-     useEffect(() => {
-       navigate('/'); 
-     }, []); 
   return (
     <>
       <Routes>

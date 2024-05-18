@@ -12,6 +12,7 @@ import { python } from "./CodeExample"
 import AnimationBackground from "../../components/Animation/AnimationBackground"
 
 const HomePage: FC<{}> = (): ReactElement => {
+
   const navigate = useNavigate()
   const goRegistr = () => navigate("/registration")
   const goHome = () => navigate("/")
@@ -23,13 +24,14 @@ const HomePage: FC<{}> = (): ReactElement => {
   const [valueModalChart, setValueModalChart] = useState<boolean>(false)
   const [defaultCode, setDefaultCode] = useState<string>(python)
 
-  const [code, setCode] = useState(defaultCode)
+  const [codeProgramm, setCodeProgramm] = useState(defaultCode)
+
 
   useEffect(() => {
-    setCode(defaultCode)
+    setCodeProgramm(defaultCode)
   }, [defaultCode])
 
-  const codeLines = code.split("\n")
+  const codeLines = codeProgramm.split("\n")
   const textAreaRef = useRef<HTMLTextAreaElement>(null) // Уточнили тип рефа
   const lineNumbersRef = useRef<HTMLDivElement>(null) // Уточнили тип рефа
 
@@ -39,7 +41,7 @@ const HomePage: FC<{}> = (): ReactElement => {
     const pastedText = clipboardData.getData("text")
 
     const formattedText = pastedText.replace(/\t/g, "  ")
-    setCode(code + formattedText)
+    setCodeProgramm(codeProgramm + formattedText)
   }
 
   useEffect(() => {
@@ -105,8 +107,8 @@ const HomePage: FC<{}> = (): ReactElement => {
                 <div className={style["HomePage__containerCompilerTextCode"]}>
                   <textarea
                     ref={textAreaRef}
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
+                    value={codeProgramm}
+                    onChange={(e) => setCodeProgramm(e.target.value)}
                     onPaste={handlePaste}
                     className={
                       backgroundColor == "#4e54c8"
