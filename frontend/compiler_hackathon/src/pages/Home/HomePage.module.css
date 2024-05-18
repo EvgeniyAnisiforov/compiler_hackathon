@@ -130,16 +130,71 @@
     resize: none;
     line-height: 1.2; 
 }
-.HomePage__compilerTextCode::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
-  }
-  
-.HomePage__compilerTextCode::-webkit-scrollbar-thumb {
+
+.HomePage__compilerTextCode1::-webkit-scrollbar-thumb {
     background-color: #6822d8;
     border-radius: 3px;
     cursor: pointer;
 }
+.HomePage__compilerTextCode1::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode2::-webkit-scrollbar-thumb {
+    background-color: #f8a01b;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode2::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode3::-webkit-scrollbar-thumb {
+    background-color: #f665ab;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode3::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode4::-webkit-scrollbar-thumb {
+    background-color: #57faef;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode4::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode5::-webkit-scrollbar-thumb {
+    background-color: #1d22c9;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode5::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode6::-webkit-scrollbar-thumb {
+    background-color: #328645;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode6::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode7::-webkit-scrollbar-thumb {
+    background-color: #e9453a;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.HomePage__compilerTextCode7::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+
 .HomePage__containerOutput{
     width: 600px;
     height: 630px;
