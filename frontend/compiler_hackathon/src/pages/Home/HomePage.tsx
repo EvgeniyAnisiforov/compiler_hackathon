@@ -7,6 +7,7 @@ import RadioForm from "../../components/RadioForm"
 import ModalChart from "../../components/ModalChart/ModalChart"
 import MenuColorIcon from "../../components/MenuColorIcon"
 import { useAppSelector } from "../../hook/hookRTK"
+import { python} from "./CodeExample"
 
 const HomePage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
@@ -18,26 +19,14 @@ const HomePage: FC<{}> = (): ReactElement => {
   const backgroundColor = useAppSelector(state => state.setColor.value)
 
   const [valueModalChart, setValueModalChart] = useState<boolean>(false)
-  const [defaultCode, _setDefaultCode] = useState<string>(`def bubble_sort(arr):
-    n = len(arr)
+  const [defaultCode, setDefaultCode] = useState<string>(python)
+  console.log(defaultCode)
 
-    for i in range(n):
-        for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-
-# Пример использования
-arr = [64, 34, 25, 12, 22, 11, 90]
-
-print("Исходный массив:")
-print(arr)
-
-bubble_sort(arr)
-
-print("Отсортированный массив:")
-print(arr)
-`)
   const [code, setCode] = useState(defaultCode)
+  
+  useEffect(() => {
+    setCode(defaultCode);
+  }, [defaultCode]);
 
   const codeLines = code.split("\n")
   const textAreaRef = useRef<HTMLTextAreaElement>(null) // Уточнили тип рефа
@@ -90,7 +79,7 @@ print(arr)
         </div>
 
         <div className={style["HomePage__wrapperCompiler--flex"]}>
-          <RadioForm language={(e)=>setLanguage(e)}/>
+          <RadioForm language={(e)=>setLanguage(e)} defaultCode={(e)=>setDefaultCode(e)}/>
           <div>
             <div className={style["HomePage__containerCompiler--flex"]}>
               <div

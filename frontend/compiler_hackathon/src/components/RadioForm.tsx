@@ -1,9 +1,11 @@
 import { FC, ReactElement } from "react"
 import { useState } from "react"
 import style from "./RadioForm.module.css"
+import {python, java,cpp, js} from "../pages/Home/CodeExample"
 
 interface PropsType  {
   language: (e:string)=>void
+  defaultCode: (e:string)=>void
 }
 
 const RadioForm: FC<PropsType> = (props): ReactElement => {
@@ -14,14 +16,23 @@ const RadioForm: FC<PropsType> = (props): ReactElement => {
     setSelectedOption(value)
     if (value == 'cpp'){
       props.language("C++")
+      props.defaultCode(cpp)
       return
     }
     if (value == 'js'){
       props.language("JavaScript")
+      props.defaultCode(js)
       return
     }
-    else{
-      props.language(value)
+    if (value == 'python'){
+      props.language("Python")
+      props.defaultCode(python)
+      return
+    }
+    if (value == 'java'){
+      props.language("Java")
+      props.defaultCode(java)
+      return
     }
   }
 
