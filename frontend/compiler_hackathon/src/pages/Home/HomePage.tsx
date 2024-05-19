@@ -1,6 +1,6 @@
 import { FC, ReactElement } from "react"
 import { useState, useRef, useEffect } from "react"
-import { GiHamburgerMenu } from "react-icons/gi"
+// import { GiHamburgerMenu } from "react-icons/gi"
 import { useNavigate } from "react-router-dom"
 import style from "./HomePage.module.css"
 import RadioForm from "../../components/RadioForm"
@@ -44,6 +44,20 @@ const HomePage: FC<{}> = (): ReactElement => {
     setCodeProgramm(codeProgramm + formattedText)
   }
 
+  const handleKeyDown = (event:any) => {
+    if (event.key === 'Tab') {
+      event.preventDefault(); // Предотвращает стандартное поведение Tab
+      const start = event.target.selectionStart;
+      const end = event.target.selectionEnd;
+      const newText = codeProgramm.substring(0, start) + '    ' + codeProgramm.substring(end);
+      setCodeProgramm(newText);
+
+      // Устанавливаем новую позицию курсора
+      const newPosition = start + 4;
+      event.target.setSelectionRange(newPosition, newPosition);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       if (lineNumbersRef.current && textAreaRef.current) {
@@ -67,7 +81,7 @@ const HomePage: FC<{}> = (): ReactElement => {
       <div className={style["HomePage__wrapper"]}>
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>
-            <GiHamburgerMenu className={style["HomePage__burgerMenu"]} />
+            {/* <GiHamburgerMenu className={style["HomePage__burgerMenu"]} /> */}
             <MenuColorIcon />
           </div>
           <div>
@@ -109,6 +123,7 @@ const HomePage: FC<{}> = (): ReactElement => {
                     ref={textAreaRef}
                     value={codeProgramm}
                     onChange={(e) => setCodeProgramm(e.target.value)}
+                    onKeyDown={handleKeyDown}
                     onPaste={handlePaste}
                     className={
                       backgroundColor == "#4e54c8"

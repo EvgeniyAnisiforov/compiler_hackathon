@@ -19,7 +19,7 @@
 }
 .RegistrationPage__container--white{
     width: 750px;
-    height: 500px;
+    height: 550px;
     margin: 0 auto;
     border-radius: 20px;
     box-shadow: 0 0 20px rgba(255,255,255,1);
@@ -70,7 +70,11 @@
     margin-bottom: 20px;
 }
 
-
+.RegistrationPage__containerButton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .RegistrationPage__button{
     font-size: 20px;
     background-color:  rgba(255, 255, 255, 1);
@@ -80,6 +84,10 @@
     border-radius: 10px; 
     box-shadow: 0 0 20px rgba(255,255,255,.8);
     color: #000;
+
+    bottom: 0;
+    position: absolute;
+    margin: 0 0px 50px;
 }
 
 .RegistrationPage__button:hover{
