@@ -47,11 +47,14 @@
 .LoginPage__containerText{
     width: 70%;
     margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .LoginPage__containerText p {
     font-size: 13px;
     text-align: left;
-    /* padding:  0 5px; */
     color: #fff;
 }
 .LoginPage__containerText span {
@@ -75,13 +78,11 @@
 .LoginPage__containerTextGuest {
     width: 70%;
     margin: 0 auto;
-    padding:  0 5px; 
+    padding:  5px 3px; 
     color: blue;
     text-decoration: underline;
     text-align: left;
     font-size: 15px;
-    
-    /* margin-bottom: 40px; */
 }
 
 .LoginPage__containerButton{
@@ -112,7 +113,10 @@
     color: #fff;
 }
 
-
+.LoginPage__errorText{
+    color: #ffffff;
+    font-size: 15px;
+}
 
 .area{
     background: #4e54c8;  
@@ -125,4 +129,155 @@
     align-items: center;
 }
 
+.LoginPage__sizeButtonColorBackgroung{
+    width: 45px;
+    height: 45px;
+    cursor: pointer; 
+}
 
+@media (max-width: 1440px) {
+  /* Стили для экранов шириной 1440px и меньше */
+  
+}
+
+
+@media (max-width: 1200px) {
+  /* Стили для экранов шириной 1200px и меньше */
+}
+
+
+@media (max-width: 1024px) {
+  /* Стили для экранов шириной 1024px и меньше */
+  .LoginPage__animationBackground, .LoginPage__buttonAnimationBackground{
+    display: none;
+  }
+  .LoginPage__container--white{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    backdrop-filter: blur(0px);
+    box-shadow: none;
+    background-color: rgba(0,0,0,0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .LoginPage__container--flexCenter{
+    width: 90%;
+    margin: 0 auto;
+  }
+  .LoginPage__button{
+    margin-top: 40px;
+    position: static;
+  }
+  .LoginPage_menuColor{
+    z-index: 100;
+  }
+  .LoginPage__containerText p {
+    font-size: 11px;
+  }
+  .LoginPage__buttonRegistr{
+    font-size: 14px;
+    margin: 0;
+  }
+  .LoginPage__button{
+    font-size: 17px;
+  }
+  .LoginPage__errorText{
+    font-size: 13.5px;
+  }
+  .LoginPage__h1{
+    margin: 50px 0 40px;
+    font-size: 30px;
+  }
+  .LoginPage__containerTextGuest{
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Стили для экранов шириной 768px и меньше */
+  .LoginPage__container--flexCenter{
+    width: 100%;
+    margin: 0 auto;
+  }
+  .LoginPage__containerText p {
+    font-size: 12px;
+  }
+  .LoginPage__buttonRegistr{
+    font-size: 13px;
+    margin: 0;
+  }
+  .LoginPage__containerTextGuest{
+    font-size: 15px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .LoginPage__h1{
+    margin: 50px 0 20px;
+    font-size: 30px;
+  }
+  .LoginPage__button{
+    margin-top: 15px;
+    font-size: 15px;
+  }
+  .LoginPage__containerText{
+    width: 90%;
+  }
+  .LoginPage__errorText{
+    font-size: 15px;
+  }
+  .LoginPage__containerInput{
+    width: 90%;
+}
+  .LoginPage__input--fontSize { /* Современные браузеры */
+    font-size: 15px;
+    height: 35px;
+}
+  input::placeholder { /* Современные браузеры */
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 425px) {
+    /* Стили для экранов шириной 425px и меньше */
+    .LoginPage__errorText{
+        font-size: 12px;
+    }
+    .LoginPage__input--fontSize { /* Современные браузеры */
+        font-size: 14px;
+        height: 25px;
+    }
+    .LoginPage__h1{
+        font-size: 23px;
+    }
+    .LoginPage__buttonRegistr{
+        font-size: 12px;
+    }
+    
+    .LoginPage__containerText p {
+        font-size: 12px;
+    }
+    .LoginPage__containerTextGuest{
+        margin-top: 10px;
+        font-size: 12px;
+    }
+    .LoginPage__button{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    .LoginPage__buttonAnimationBackground{
+        width: 10px;
+        height: 10px;
+    }
+    .LoginPage__sizeButtonColorBackgroung{
+        width: 10px;
+        height: 10px;
+        cursor: pointer; 
+    }
+  }

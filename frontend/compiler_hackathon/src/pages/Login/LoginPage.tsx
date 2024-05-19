@@ -47,79 +47,81 @@ const LoginPage: FC<{}> = (): ReactElement => {
     <div className={style["area"]} style={{ backgroundColor: backgroundColor }}>
       <div className={style["LoginPage__wrapper"]}>
         <div className={style["LoginPage_containerIconColor"]}>
-          <MenuColorIcon />
-          <div>
-            <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} style={{width: "45px", height: "45px", cursor: "pointer" }}/>
+          <div className={style["LoginPage_menuColor"]}><MenuColorIcon /></div>
+          <div className={style["LoginPage__buttonAnimationBackground"]}>
+            <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} className={style["LoginPage__sizeButtonColorBackgroung"]}/>
           </div>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={style["LoginPage__container--white"]}
         >
-          <h3 className={style["LoginPage__h1"]}>Авторизация</h3>
-          <div className={style["LoginPage__containerInput"]}>
-            <Controller
-              name="login"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-                minLength: {
-                  value: 8,
-                  message: "Минимальная длина 8 символов",
-                },
-              }}
-              render={({ field }) => <Input {...field} placeholder="Логин" />}
-            />
-            {errors?.login && errors.login.message && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.login.message}
-              </span>
-            )}
-          </div>
-          <div className={style["LoginPage__containerInput"]}>
-            <Controller
-              name="password"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-                minLength: {
-                  value: 8,
-                  message: "Минимальная длина 8 символов",
-                },
-              }}
-              render={({ field }) => (
-                <Input.Password {...field} placeholder="Пароль" />
+          <div className={style["LoginPage__container--flexCenter"]}>
+            <h1 className={style["LoginPage__h1"]}>Авторизация</h1>
+            <div className={style["LoginPage__containerInput"]}>
+              <Controller
+                name="login"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                  minLength: {
+                    value: 8,
+                    message: "Минимальная длина 8 символов",
+                  },
+                }}
+                render={({ field }) => <Input {...field} placeholder="Логин" className={style["LoginPage__input--fontSize"]}/>}
+              />
+              {errors?.login && errors.login.message && (
+                <span className={style["LoginPage__errorText"]}>
+                  {errors.login.message}
+                </span>
               )}
-            />
-            {errors.password && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.password.message}
-              </span>
-            )}
-          </div>
-          <div className={style["LoginPage__containerText"]}>
-            <p>
-              У вас нет аккаунта?
+            </div>
+            <div className={style["LoginPage__containerInput"]}>
+              <Controller
+                name="password"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                  minLength: {
+                    value: 8,
+                    message: "Минимальная длина 8 символов",
+                  },
+                }}
+                render={({ field }) => (
+                  <Input.Password {...field} placeholder="Пароль" className={style["LoginPage__input--fontSize"]}/>
+                )}
+              />
+              {errors.password && (
+                <span className={style["LoginPage__errorText"]}>
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
+            <div className={style["LoginPage__containerText"]}>
+              <p>
+                У вас нет аккаунта?
+              </p>
               <button
-                className={style["LoginPage__buttonRegistr"]}
-                onClick={goRegistr}
-              >
-                Регистрация
+                  className={style["LoginPage__buttonRegistr"]}
+                  onClick={goRegistr}
+                >
+                  Регистрация
+                </button>
+            </div>
+            <div className={style["LoginPage__containerTextGuest"]}>
+              <a onClick={goHome}>Войти как гость</a>
+            </div>
+            <div className={style["LoginPage__containerButton"]}>
+              <button className={style["LoginPage__button"]} type="submit">
+                Войти
               </button>
-            </p>
-          </div>
-          <div className={style["LoginPage__containerTextGuest"]}>
-            <a onClick={goHome}>Войти как гость</a>
-          </div>
-          <div className={style["LoginPage__containerButton"]}>
-            <button className={style["LoginPage__button"]} type="submit">
-              Войти
-            </button>
+            </div>
           </div>
         </form>
       </div>
 
-      {animationBackground && <AnimationBackground />}
+      {animationBackground && <div className={style["LoginPage__animationBackground"]}><AnimationBackground /></div>}
     </div>
   )
 }

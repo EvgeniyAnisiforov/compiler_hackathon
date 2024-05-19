@@ -51,98 +51,100 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
     <div className={style["area"]} style={{ backgroundColor: backgroundColor }}>
       <div className={style["RegistrationPage__wrapper"]}>
         <div className={style["RegistrationPage_containerIconColor"]}>
-          <MenuColorIcon />
-          <div>
-            <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} style={{width: "45px", height: "45px", cursor: "pointer" }}/>
+        <div className={style["RegistrationPage_menuColor"]}><MenuColorIcon /></div>
+          <div className={style["RegistrationPage__buttonAnimationBackground"]}>
+            <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} className={style["RegistrationPage__sizeButtonColorBackgroung"]}/>
           </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={style["RegistrationPage__container--white"]}>
-          <h3 className={style["RegistrationPage__h1"]}>Регистрация</h3>
-          <div className={style["RegistrationPage__containerInput"]}>
-            <Controller
-              name="name"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-              }}
-              render={({ field }) => <Input {...field} placeholder="Имя" />}
-            />
-            {errors?.name && errors.name.message && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.name.message}
-              </span>
-            )}
-          </div>
-          <div className={style["RegistrationPage__containerInput"]}>
-            <Controller
-              name="surname"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-              }}
-              render={({ field }) => <Input {...field} placeholder="Фамилия" />}
-            />
-            {errors?.name && errors.name.message && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.name.message}
-              </span>
-            )}
-          </div>
-          <div className={style["RegistrationPage__containerInput"]}>
-          <Controller
-              name="login"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-                minLength: {
-                  value: 8,
-                  message: "Минимальная длина 8 символов",
-                },
-              }}
-              render={({ field }) => <Input {...field} placeholder="Логин" />}
-            />
-            {errors?.login && errors.login.message && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.login.message}
-              </span>
-            )}
-          </div>
-          <div className={style["RegistrationPage__containerInput"]}> 
-          <Controller
-              name="password"
-              control={control}
-              rules={{
-                required: "Поле обязательно к заполнению",
-                minLength: {
-                  value: 8,
-                  message: "Минимальная длина 8 символов",
-                },
-              }}
-              render={({ field }) => (
-                <Input.Password {...field} placeholder="Пароль" />
+          <div className={style["RegistrationPage__container--flexCenter"]}>
+            <h1 className={style["RegistrationPage__h1"]}>Регистрация</h1>
+            <div className={style["RegistrationPage__containerInput"]}>
+              <Controller
+                name="name"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                }}
+                render={({ field }) => <Input {...field} placeholder="Имя" className={style["RegistrationPage__input--fontSize"]}/>}
+              />
+              {errors?.name && errors.name.message && (
+                <span className={style["RegistrationPage__errorText"]}>
+                  {errors.name.message}
+                </span>
               )}
-            />
-            {errors.password && (
-              <span style={{ color: "red", fontSize: "15px" }}>
-                {errors.password.message}
-              </span>
-            )}
-          </div>
-          <div className={style["RegistrationPage__containerText"]}>
-            <p>
-              Вернуться к <a onClick={goLogin}>авторизации</a>
-            </p>
-          </div>
-          <div className={style["RegistrationPage__containerButton"]}>
-            <button className={style["RegistrationPage__button"]}>
-              Отправить
-            </button>
-          </div>
+            </div>
+            <div className={style["RegistrationPage__containerInput"]}>
+              <Controller
+                name="surname"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                }}
+                render={({ field }) => <Input {...field} placeholder="Фамилия" className={style["RegistrationPage__input--fontSize"]}/>}
+              />
+              {errors?.name && errors.name.message && (
+                <span className={style["RegistrationPage__errorText"]}>
+                  {errors.name.message}
+                </span>
+              )}
+            </div>
+            <div className={style["RegistrationPage__containerInput"]}>
+            <Controller
+                name="login"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                  minLength: {
+                    value: 8,
+                    message: "Минимальная длина 8 символов",
+                  },
+                }}
+                render={({ field }) => <Input {...field} placeholder="Логин" className={style["RegistrationPage__input--fontSize"]}/>}
+              />
+              {errors?.login && errors.login.message && (
+                <span className={style["RegistrationPage__errorText"]}>
+                  {errors.login.message}
+                </span>
+              )}
+            </div>
+            <div className={style["RegistrationPage__containerInput"]}> 
+            <Controller
+                name="password"
+                control={control}
+                rules={{
+                  required: "Поле обязательно к заполнению",
+                  minLength: {
+                    value: 8,
+                    message: "Минимальная длина 8 символов",
+                  },
+                }}
+                render={({ field }) => (
+                  <Input.Password {...field} placeholder="Пароль" className={style["RegistrationPage__input--fontSize"]}/>
+                )}
+              />
+              {errors.password && (
+                <span className={style["RegistrationPage__errorText"]}>
+                  {errors.password.message}
+                </span>
+              )}
+            </div>
+            <div className={style["RegistrationPage__containerText"]}>
+              <p>
+                Вернуться к <a onClick={goLogin}>авторизации</a>
+              </p>
+            </div>
+            <div className={style["RegistrationPage__containerButton"]}>
+              <button className={style["RegistrationPage__button"]}>
+                Отправить
+              </button>
+            </div>
+          </div>  
         </form>
       </div>
 
-      {animationBackground && <AnimationBackground />}
+      {animationBackground && <div className={style["RegistrationPage__animationBackground"]}><AnimationBackground /></div>}
     </div>
   )
 }

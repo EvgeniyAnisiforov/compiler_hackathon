@@ -48,7 +48,11 @@
 .RegistrationPage__containerText{
     width: 70%;
     margin: 0 auto;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .RegistrationPage__containerText p {
     font-size: 17px;
@@ -63,7 +67,7 @@
 .RegistrationPage__containerTextGuest{
     width: 70%;
     margin: 0 auto;
-    padding:  0 5px; 
+    padding:  5px 3px; 
     color: blue;
     text-decoration: underline;
     text-align: left;
@@ -97,7 +101,10 @@
     color: #fff;
 }
 
-
+.RegistrationPage__errorText{
+    color: #ffffff;
+    font-size: 15px;
+}
 
 .area{
     background: #4e54c8;  
@@ -109,3 +116,157 @@
     justify-content: center;
     align-items: center;
 }
+
+.RegistrationPage__sizeButtonColorBackgroung{
+    width: 45px;
+    height: 45px;
+    cursor: pointer; 
+}
+
+@media (max-width: 1440px) {
+    /* Стили для экранов шириной 1440px и меньше */
+    
+  }
+  
+  
+  @media (max-width: 1200px) {
+    /* Стили для экранов шириной 1200px и меньше */
+  }
+  
+  
+  @media (max-width: 1024px) {
+    /* Стили для экранов шириной 1024px и меньше */
+    .RegistrationPage__animationBackground, .RegistrationPage__buttonAnimationBackground{
+      display: none;
+    }
+    
+    .RegistrationPage__container--white{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      margin: 0;
+      backdrop-filter: blur(0px);
+      box-shadow: none;
+      background-color: rgba(0,0,0,0);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .RegistrationPage__container--flexCenter{
+      width: 90%;
+      margin: 0 auto;
+    }
+    .RegistrationPage__button{
+      margin-top: 40px;
+      position: static;
+    }
+    .RegistrationPage_menuColor{
+      z-index: 100;
+    }
+    .RegistrationPage__containerText p {
+      font-size: 11px;
+    }
+    .RegistrationPage__buttonRegistr{
+      font-size: 14px;
+      margin: 0;
+    }
+    .RegistrationPage__button{
+      font-size: 17px;
+    }
+    .RegistrationPage__errorText{
+      font-size: 13.5px;
+    }
+    .RegistrationPage__h1{
+      margin: 50px 0 40px;
+      font-size: 30px;
+    }
+    .RegistrationPage__containerTextGuest{
+      font-size: 13px;
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    /* Стили для экранов шириной 768px и меньше */
+    .RegistrationPage__container--flexCenter{
+      width: 100%;
+      margin: 0 auto;
+    }
+    .RegistrationPage__containerText p {
+      font-size: 13px;
+    }
+    .RegistrationPage__buttonRegistr{
+      font-size: 13px;
+      margin: 0;
+    }
+    .RegistrationPage__containerTextGuest{
+      font-size: 15px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    .RegistrationPage__h1{
+      margin: 50px 0 20px;
+      font-size: 30px;
+    }
+    .RegistrationPage__button{
+      margin-top: 15px;
+      font-size: 15px;
+    }
+    .RegistrationPage__containerText{
+      width: 90%;
+    }
+    .RegistrationPage__errorText{
+      font-size: 12px;
+    }
+    .RegistrationPage__containerInput{
+      width: 90%;
+  }
+    .RegistrationPage__input--fontSize { /* Современные браузеры */
+      font-size: 15px;
+      height: 35px;
+  }
+    input::placeholder { /* Современные браузеры */
+      font-size: 17px;
+    }
+  }
+  
+  @media (max-width: 425px) {
+      /* Стили для экранов шириной 425px и меньше */
+      .RegistrationPage__errorText{
+          font-size: 12px;
+      }
+      .RegistrationPage__input--fontSize { /* Современные браузеры */
+          font-size: 14px;
+          height: 30px;
+      }
+      .RegistrationPage__h1{
+          font-size: 23px;
+      }
+      .RegistrationPage__buttonRegistr{
+          font-size: 12px;
+      }
+      
+      .RegistrationPage__containerText p {
+          font-size: 11.5px;
+      }
+      .RegistrationPage__containerTextGuest{
+          margin-top: 10px;
+          font-size: 12px;
+      }
+      .RegistrationPage__button{
+          margin-top: 10px;
+          font-size: 12px;
+      }
+      .RegistrationPage__buttonAnimationBackground{
+          width: 10px;
+          height: 10px;
+      }
+      .RegistrationPage__sizeButtonColorBackgroung{
+          width: 10px;
+          height: 10px;
+          cursor: pointer; 
+      }
+    }
