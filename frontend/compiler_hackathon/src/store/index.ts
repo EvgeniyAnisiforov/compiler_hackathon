@@ -14,11 +14,9 @@ import { colorSelectorSlice } from "./colorSelector-slice"
 import { animationBackgroundSlice } from "./animationBackground-slice"
 import { getCodeApi } from "./query/GET/getCodeApi"
 import { getTimeApi } from "./query/GET/getTimeApi"
-import { getColorApi } from "./query/GET/getColorApi"
 import { postAuthApi } from "./query/POST/postAuthApi"
 import { postRegApi } from "./query/POST/postRegApi"
 import { postCodeApi } from "./query/POST/postCodeApi"
-import { postColorApi } from "./query/POST/postColorApi"
 
 
 const rootReducer = combineReducers({
@@ -26,11 +24,9 @@ const rootReducer = combineReducers({
   animationBackground: animationBackgroundSlice.reducer,
   [getCodeApi.reducerPath]: getCodeApi.reducer,
   [getTimeApi.reducerPath]: getTimeApi.reducer,
-  [getColorApi.reducerPath]: getColorApi.reducer,
   [postAuthApi.reducerPath]: postAuthApi.reducer,
   [postRegApi.reducerPath]: postRegApi.reducer,
   [postCodeApi.reducerPath]: postCodeApi.reducer,
-  [postColorApi.reducerPath]: postColorApi.reducer,
 })
 
 const persistConfig = {
@@ -38,11 +34,9 @@ const persistConfig = {
   storage,
   blacklist: [
     getCodeApi.reducerPath,
-    getColorApi.reducerPath,
     getTimeApi.reducerPath,
     postAuthApi.reducerPath,
     postCodeApi.reducerPath,
-    postColorApi.reducerPath,
     postRegApi.reducerPath
   ],
 }
@@ -59,11 +53,9 @@ const store = configureStore({
     }).concat(
       getCodeApi.middleware,
       getTimeApi.middleware,
-      getColorApi.middleware,
       postAuthApi.middleware,
       postRegApi.middleware,
       postCodeApi.middleware,
-      postColorApi.middleware
     ),
   devTools: true,
 })
