@@ -2,7 +2,9 @@
     position: absolute;
     right: 0;
     top: 0;
-    padding: 15px 10px;
+    padding: 15px;
+
+    display: flex;
 }
 .RegistrationPage__wrapper{
     padding: 15px;

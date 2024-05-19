@@ -1,17 +1,24 @@
 import { FC, ReactElement } from "react"
 import { useState, useRef, useEffect } from "react"
-// import { GiHamburgerMenu } from "react-icons/gi"
 import { useNavigate } from "react-router-dom"
 import style from "./HomePage.module.css"
 import RadioForm from "../../components/RadioForm"
 import ModalChart from "../../components/ModalChart/ModalChart"
 import MenuColorIcon from "../../components/MenuColorIcon"
-import { useAppSelector } from "../../hook/hookRTK"
+import { useAppDispatch, useAppSelector } from "../../hook/hookRTK"
 import { python } from "./CodeExample"
+import animationOn from '../../assets/img/animationOn.svg'
+import animationOff from '../../assets/img/animationOff.svg'
 // import AnimationLoading from "../../components/Animation/AnimationLoading"
 import AnimationBackground from "../../components/Animation/AnimationBackground"
+import { setAnimation } from "../../store/animationBackground-slice"
+
 
 const HomePage: FC<{}> = (): ReactElement => {
+
+  const dispatch = useAppDispatch()
+  const backgroundColor = useAppSelector((state) => state.setColor.value)
+  const animationBackground = useAppSelector((state)=> state.animationBackground.value)
 
   const navigate = useNavigate()
   const goRegistr = () => navigate("/registration")
@@ -19,7 +26,6 @@ const HomePage: FC<{}> = (): ReactElement => {
 
   const [language, setLanguage] = useState<string>("Python")
 
-  const backgroundColor = useAppSelector((state) => state.setColor.value)
 
   const [valueModalChart, setValueModalChart] = useState<boolean>(false)
   const [defaultCode, setDefaultCode] = useState<string>(python)
@@ -81,7 +87,9 @@ const HomePage: FC<{}> = (): ReactElement => {
       <div className={style["HomePage__wrapper"]}>
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>
-            {/* <GiHamburgerMenu className={style["HomePage__burgerMenu"]} /> */}
+            <div>
+              <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} style={{width: "45px", height: "45px", cursor: "pointer" }}/>
+            </div>
             <MenuColorIcon />
           </div>
           <div>
@@ -169,7 +177,7 @@ const HomePage: FC<{}> = (): ReactElement => {
       </div>
 
       {valueModalChart && <ModalChart close={(e) => setValueModalChart(e)} />}
-      <AnimationBackground />
+      {animationBackground && <AnimationBackground />}
     </div>
   )
 }

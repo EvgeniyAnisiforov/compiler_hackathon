@@ -11,6 +11,7 @@ import {
 } from "redux-persist"
 import storage from "redux-persist/lib/storage"
 import { colorSelectorSlice } from "./colorSelector-slice"
+import { animationBackgroundSlice } from "./animationBackground-slice"
 import { getCodeApi } from "./query/GET/getCodeApi"
 import { getTimeApi } from "./query/GET/getTimeApi"
 import { getColorApi } from "./query/GET/getColorApi"
@@ -22,6 +23,7 @@ import { postColorApi } from "./query/POST/postColorApi"
 
 const rootReducer = combineReducers({
   setColor: colorSelectorSlice.reducer,
+  animationBackground: animationBackgroundSlice.reducer,
   [getCodeApi.reducerPath]: getCodeApi.reducer,
   [getTimeApi.reducerPath]: getTimeApi.reducer,
   [getColorApi.reducerPath]: getColorApi.reducer,

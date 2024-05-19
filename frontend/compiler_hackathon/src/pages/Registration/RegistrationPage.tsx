@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom"
 import style from "./RegistrationPage.module.css"
 import { Input } from "antd"
 import MenuColorIcon from "../../components/MenuColorIcon"
-import { useAppSelector } from "../../hook/hookRTK"
+import { useAppSelector, useAppDispatch } from "../../hook/hookRTK"
 import AnimationBackground from "../../components/Animation/AnimationBackground"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import animationOn from '../../assets/img/animationOn.svg'
+import animationOff from '../../assets/img/animationOff.svg'
+import { setAnimation } from "../../store/animationBackground-slice"
 
 type Inputs = {
   login: string
@@ -32,6 +35,8 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
   const navigate = useNavigate()
   const goLogin = () => navigate("/")
 
+  const dispatch = useAppDispatch()
+  const animationBackground = useAppSelector((state)=> state.animationBackground.value)
   const backgroundColor = useAppSelector((state) => state.setColor.value)
 
 
@@ -47,6 +52,9 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
       <div className={style["RegistrationPage__wrapper"]}>
         <div className={style["RegistrationPage_containerIconColor"]}>
           <MenuColorIcon />
+          <div>
+            <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} style={{width: "45px", height: "45px", cursor: "pointer" }}/>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className={style["RegistrationPage__container--white"]}>
@@ -134,7 +142,7 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
         </form>
       </div>
 
-      <AnimationBackground />
+      {animationBackground && <AnimationBackground />}
     </div>
   )
 }
