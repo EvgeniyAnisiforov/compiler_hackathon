@@ -1,7 +1,7 @@
 import sqlite3
 
 
-DB_NAME = "./DBStandart.db"
+DB_NAME = "../../DBStandart.db"
 
 #очевидно и невероятно
 def Create_DB():
@@ -37,7 +37,6 @@ def CreateUser(login, passwd, name, surname):
         db.execute("INSERT INTO AllSettings (userID) VALUES (?)", (userID,))
         db.execute('COMMIT')
         db.commit()
-        
         return True
 
 #авторизация вариант 1
@@ -48,7 +47,6 @@ def CheckUser(login, passwd):
         if query_exe is None:
             return False
         return query_exe
-#авторизация вариант 2
 
 #Получить все/определенные значения атрибутов в виде списка (спросить у Ильи как добавить подсказку)
 def GetAtrb(userID, *args):
@@ -98,8 +96,8 @@ def SetAtrb(userID ,login=None, passwd=None, name=None, surname=None,
     
         
 # Тестирование
-Create_DB()
-CreateUser("8", "5", "oo", "oo") or CheckUser("8", "5")
-GetAtrb(1, "name", "RAM","yy")
-SetAtrb(1,RAM=9,name="fun",thema_color="#rgb")
-print('howareyou')
+# Create_DB()
+# CreateUser("8", "5", "oo", "oo") or CheckUser("8", "5")
+# GetAtrb(1, "name", "RAM","yy")
+SetAtrb(1,last_code="tratata",name="fun",thema_color="#rgb")
+print(GetAtrb(1))
