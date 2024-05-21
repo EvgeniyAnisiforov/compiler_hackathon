@@ -9,7 +9,7 @@ statistic = Statistic()
 
 
 @router.get(
-    "/time/{user_id}",
+    "/get_time/{user_id}",
     description="Метод получения времени",
     tags=["statistics"],
     response_model=Time
@@ -21,7 +21,7 @@ async def get_time(user_id: int):
     return result
 
 
-@router.post("/get_time/{user_id}")
+@router.post("/update_time/{user_id}")
 async def update_time(user_id: int, update_request: UpdateTimeRequest):
     update_result = statistic.update_time(user_id=user_id, lang=update_request.language.value,
                                           time=update_request.time)
