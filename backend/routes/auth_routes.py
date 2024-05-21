@@ -1,11 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 from backend.models.User import UserAuth, UserCreate
+from db import CreateUser, CheckUser
 
 router = APIRouter()
-
-
-async def get_user():
-    return "user_test"
 
 
 @router.post(
@@ -14,12 +11,11 @@ async def get_user():
     tags=["users"]
 )
 async def register(user: UserCreate):
-    db_user = await get_user()
-    # if db_user:
-    #     raise HTTPException(status_code=400, detail="Username already registered")
-    password = user.password  # В реальном приложении здесь должно быть хэширование пароля
-    # await create_user(user.username, hashed_password)
-    return {"message": f"User {db_user}-{password} created successfully"}
+    # Проверка существует ли уже пользователь
+    if CreateUser(user.login, user.password, user.name, user.surname):
+        return {"message": f"User {user.login} created successfully"}
+    else:
+        raise HTTPException(status_code=400, detail="Username already registered")
 
 
 @router.post(
@@ -28,10 +24,8 @@ async def register(user: UserCreate):
     tags=["users"]
 )
 async def login(user: UserAuth):
-    # db_user = await get_user(user.username)
-    # if not db_user or db_user['hashed_password'] != user.password:
-    #     return {"message": "Incorrect username or password"}
-    if user.login == "user" and user.password == "pass":
-        return {"message": "ok"}
+    user_info = CheckUser(user.login, user.password)
+    if user_info:
+        return {"message": "Authentication successful"}
     else:
-        return {"message": "no"}
+        raise HTTPException(status_code=401, detail="Incorrect username or password")

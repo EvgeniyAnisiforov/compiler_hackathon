@@ -10,7 +10,8 @@ app = FastAPI(
         {"name": "users", "description": "Operations with users"},
         {"name": "statistics", "description": "Operations with statistics"},
         {"name": "compiler", "description": "Operations with compiler"},
-    ]
+    ],
+    root_path='/api'
 )
 
 app.include_router(compiler_router, prefix="/compile")
