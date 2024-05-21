@@ -1,219 +1,484 @@
-@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
 
-*{
-    margin: 0px; 
-    padding: 0px;
-}
-.HomePage__wrapper{
-    padding: 15px;
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
+.HomePage__wrapper {
+  padding: 15px;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
-.Homepage__containerHeader--flex{
-    width: 100%;
-    height: 50px;
-    margin-bottom: 50px;
+.Homepage__containerHeader--flex {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 50px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.HomePage__containerMenuAndIcon--flex{
-    display: flex;
+.HomePage__containerMenuAndIcon--flex {
+  display: flex;
 }
 
-
-
-
-.HomePage__button{
-    font-size: 20px;
-    background-color:  rgba(255, 255, 255, 1);
-    border: 2px solid #ccc;
-    padding: 7px 10px;
-    margin-right: 10px;
-    border-radius: 10px; 
-    box-shadow: 0 0 20px rgba(255,255,255,.8);
-    color: rgba(0,0,0,1);
+.HomePage__button {
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid #ccc;
+  padding: 7px 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 1);
 }
-.HomePage__button:hover{
-   background-color:  rgba(220, 220, 220, .5);
-   color: #fff;
+.HomePage__button:hover {
+  background-color: rgba(220, 220, 220, 0.5);
+  color: #fff;
 }
-.HomePage__containerButton{
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
+.HomePage__containerButton {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
 }
-.HomePage__wrapperCompiler--flex{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    width: 65%;
+.HomePage__wrapperCompiler--flex {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 65%;
 }
-.HomePage__containerCompiler--flex{
-    width: 100%;
-    border: 2px solid #ccc;
-    margin: 0 auto 20px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 1); /* Снаружи справа */
+.HomePage__containerCompiler--flex {
+  width: 100%;
+  border: 2px solid #ccc;
+  margin: 0 auto 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 1); /* Снаружи справа */
 }
-.HomePage__compilerWrapper{
-    width: 600px;
-    height: 630px;
-    border-radius: 20px 0 0 20px;
-    background-color: rgba(220, 220, 220, .2);
-    backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
-    z-index: 1;
+.HomePage__compilerWrapper {
+  width: 600px;
+  height: 550px;
+  border-radius: 20px 0 0 20px;
+  background-color: rgba(220, 220, 220, 0.2);
+  backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
+  z-index: 1;
 }
-.HomePage__compilerInput{
-    white-space: pre;
-    background-color: rgba(220, 220, 220, .2);
-    backdrop-filter: blur(3px);
+.HomePage__compilerInput {
+  white-space: pre;
+  background-color: rgba(220, 220, 220, 0.2);
+  backdrop-filter: blur(3px);
 }
-.HomePage__compilerNumber--margin{
-    margin-top: 25%;
-    padding-top: 1px;
-    height: 98%;
-    font-size: 16px;
-    line-height: 1.2; 
-    color: #fff;
-    overflow: scroll;
+.HomePage__compilerNumber--margin {
+  margin-top: 25%;
+  padding-top: 1px;
+  height: 98%;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #fff;
+  overflow: scroll;
 }
-.HomePage__language{
-    position: absolute;
-    left: 0;
-    padding: 20px 30px;
-    color: #ffffff;
+.HomePage__language {
+  position: absolute;
+  left: 0;
+  padding: 20px 30px;
+  color: #ffffff;
 }
-.HomePage__compilerNumber{
-    margin-top: 10%;
-    margin-left: 5%;
-    height: 85%;
-    padding: 10px 10px 10px 15px;
-    font-size: 16px;
-    background-color: rgba(220, 220, 220, .4);
-    color: #fff;
-    border-right: 1px solid;
-    border-radius: 20px 0 0 20px;
+.HomePage__compilerNumber {
+  margin-top: 10%;
+  margin-left: 5%;
+  height: 75%;
+  padding: 10px 10px 10px 15px;
+  font-size: 16px;
+  background-color: rgba(220, 220, 220, 0.4);
+  color: #fff;
+  border-right: 1px solid;
+  border-radius: 20px 0 0 20px;
 }
 .HomePage__compilerNumber--margin::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-.HomePage__containerCompilerTextCode{
-    width: 100%;
-    margin-top: 10%;
-    height: 85%;
-    font-size: 16px; 
-    background-color: rgba(220, 220, 220, .1);
+.HomePage__containerCompilerTextCode {
+  width: 100%;
+  margin-top: 10%;
+  height: 75%;
+  font-size: 16px;
+  background-color: rgba(220, 220, 220, 0.1);
 }
-.HomePage__compilerTextCode{
-    width: 100%;
-    height: 100%;
-    font-family: monospace;
-    white-space: pre;
-    padding: 15px;  
-    font-size: 16px; 
-    background-color: rgba(220, 220, 220, .2);
-    color: #fff;
-    resize: none;
-    line-height: 1.2; 
+.HomePage__compilerTextCode {
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+  white-space: pre;
+  padding: 15px;
+  font-size: 16px;
+  background-color: rgba(220, 220, 220, 0.2);
+  color: #fff;
+  resize: none;
+  line-height: 1.2;
 }
 
 .HomePage__compilerTextCode1::-webkit-scrollbar-thumb {
-    background-color: #6822d8;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #6822d8;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode1::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode2::-webkit-scrollbar-thumb {
-    background-color: #f8a01b;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #f8a01b;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode2::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode3::-webkit-scrollbar-thumb {
-    background-color: #f665ab;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #f665ab;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode3::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode4::-webkit-scrollbar-thumb {
-    background-color: #57faef;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #57faef;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode4::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode5::-webkit-scrollbar-thumb {
-    background-color: #1d22c9;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #1d22c9;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode5::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode6::-webkit-scrollbar-thumb {
-    background-color: #328645;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #328645;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode6::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode7::-webkit-scrollbar-thumb {
-    background-color: #e9453a;
-    border-radius: 3px;
-    cursor: pointer;
+  background-color: #e9453a;
+  border-radius: 3px;
+  cursor: pointer;
 }
 .HomePage__compilerTextCode7::-webkit-scrollbar {
-    width: 5px;
-    cursor: pointer;
+  width: 5px;
+  cursor: pointer;
 }
 
-.HomePage__containerOutput{
-    width: 600px;
-    height: 630px;
-    border-radius: 0 20px 20px 0;
-    background-color: rgba(220, 220, 220, .2);
-    backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
-    z-index: 1;
+.HomePage__containerOutput {
+  width: 600px;
+  height: 550px;
+  border-radius: 0 20px 20px 0;
+  background-color: rgba(220, 220, 220, 0.2);
+  backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
+  z-index: 1;
 }
-.HomePage__compilerWrapperOutput{
-    width: 95%;
-    height: 85%;
-    margin-top: 10%;
-    padding: 15px;
-    border-radius: 0 20px 20px 0;
-    background-color: rgba(220, 220, 220, .4);
-    border-left: 1px solid rgba(255, 255, 255, 1);
-    backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
-    z-index: 1;
-    color: #fff;
+.HomePage__compilerWrapperOutput {
+  width: 95%;
+  height: 75%;
+  margin-top: 10%;
+  padding: 15px;
+  border-radius: 0 20px 20px 0;
+  background-color: rgba(220, 220, 220, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 1);
+  backdrop-filter: blur(3px); /* Размытие фона на 10 пикселей */
+  z-index: 1;
+  color: #fff;
 }
-.area{
-    background: #4e54c8;  
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+.area {
+  background: #4e54c8;
+  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+  width: 100%;
+  height: 100vh;
+}
+
+.HomePage__mobilRadioForm {
+  display: none;
+}
+
+@media (max-width: 1440px) {
+  /* Стили для экранов шириной 1440px и меньше */
+  .HomePage__containerCompiler--flex {
     width: 100%;
-    height:100vh;
+    display: block;
+  }
+  .HomePage__containerCompilerTextCode {
+    border-radius: 0 20px 20px 0;
+    width: 95%;
+    margin-right: 5%;
+    height: 85%;
+    position: relative;
+  }
+  .HomePage__compilerWrapper {
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 400px;
+    padding-bottom: 50px;
+  }
+  .HomePage__compilerTextCode2 {
+    border-radius: 0 20px 20px 0px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    font-size: 15px;
+  }
+  .HomePage__compilerWrapperOutput {
+    border-radius: 20px;
+    border: 0;
+    width: 90%;
+    margin: 0px auto;
+    padding-top: 20px;
+  }
+  .HomePage__containerOutput {
+    width: 100%;
+    border-radius: 0px 0px 0px 0px;
+    height: 200px;
+    font-size: 15px;
+
+    display: flex;
+    align-items: center;
+  }
+  .HomePage__WrapperContainerCompiler--flex {
+    width: 80%;
+  }
+  .HomePage__wrapperCompiler--flex {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .HomePage__compilerNumber {
+    height: 85%;
+  }
+  .HomePage__compilerNumber--margin {
+    font-size: 15px;
+  }
+  .HomePage__wrapper {
+    height: 100%;
+  }
+  .area {
+    height: 100vh;
+  }
+  .HomePage__compilerWrapperOutput {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  /* Стили для экранов шириной 1200px и меньше */
+  .HomePage__compilerWrapperOutput {
+    border-radius: 20px;
+    border: 0;
+    width: 90%;
+    margin: 0px auto 0px;
+    padding-top: 0px;
+  }
+  .HomePage__containerOutput {
+    width: 100%;
+    border-radius: 0px 0px 0px 0px;
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+  }
+  .HomePage__containerCompilerTextCode {
+    height: 85%;
+    position: relative;
+  }
+  .HomePage__compilerTextCode2 {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    font-size: 15px;
+  }
+  .HomePage__compilerNumber {
+    height: 85%;
+  }
+  .HomePage__wrapper {
+    height: 100%;
+  }
+  .area {
+    height: 100vh;
+  }
+  .HomePage__compilerWrapper {
+    width: 100%;
+    height: 400px;
+    padding-bottom: 15px;
+  }
+  .HomePage__compilerWrapperOutput {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Стили для экранов шириной 1024px и меньше */
+  .HomePage__animationBackground {
+    display: none;
+  }
+  .HomePage__containerButtonAnimationBackground {
+    display: none;
+  }
+  .HomePage__button {
+    font-size: 13px;
+  }
+  .HomePage__containerCompilerTextCode {
+    height: 85%;
+    position: relative;
+  }
+  .HomePage__compilerTextCode2 {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+  }
+  .HomePage__compilerNumber {
+    height: 85%;
+    font-size: 15px;
+  }
+  .HomePage__compilerWrapper {
+    height: 400px;
+  }
+  .HomePage__containerOutput {
+    font-size: 14px;
+    height: 250px;
+
+    display: flex;
+    align-items: center;
+  }
+  .HomePage__compilerWrapper {
+    padding: 0px;
+  }
+  .HomePage__compilerNumber--margin {
+    font-size: 14px;
+  }
+  .HomePage__compilerWrapperOutput {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Стили для экранов шириной 768px и меньше */
+  .HomePage__animationBackground {
+    display: none;
+  }
+  .HomePage__containerButtonAnimationBackground {
+    display: none;
+  }
+  .HomePage__button {
+    font-size: 13px;
+  }
+  .HomePage__containerCompilerTextCode {
+    height: 85%;
+    position: relative;
+  }
+  .HomePage__compilerTextCode2 {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+  }
+  .HomePage__compilerNumber {
+    height: 85%;
+    font-size: 12px;
+  }
+  .HomePage__compilerWrapper {
+    height: 300px;
+  }
+  .HomePage__containerOutput {
+    font-size: 14px;
+    height: 200px;
+
+    display: flex;
+    align-items: center;
+  }
+  .HomePage__wrapperCompiler--flex {
+    width: 100%;
+  }
+  .HomePage__compilerNumber--margin {
+    font-size: 10px;
+  }
+  .HomePage__mobilRadioForm {
+    display: block;
+    width: 100%;
+  }
+  .HomePage__pcRadioForm {
+    display: none;
+  }
+  .Homepage__containerHeader--flex {
+    margin-bottom: 10px;
+  }
+  .HomePage__containerOutput{
+    padding-top: 10px;
+  }
+  .HomePage__compilerWrapperOutput {
+    padding-top: 20px;
+  }
+  .HomePage__compilerNumber{
+    margin-top: 50px;
+  }
+  .HomePage__containerCompilerTextCode{
+    margin-top: 50px;
+  }
+  .HomePage__compilerTextCode{
+    margin-top: 25px;
+  }
+  .HomePage__compilerTextCode2{
+    margin-top: 0%;
+  }
+}
+
+@media (max-width: 425px) {
+  /* Стили для экранов шириной 425px и меньше */
+  .HomePage__button {
+    font-size: 8px;
+  }
+  .HomePage__compilerWrapper {
+    height: 300px;
+  }
+  .HomePage__containerCompiler--flex{
+    width: 100%;
+  }
+  .HomePage__wrapperCompiler--flex{
+    width: 100%;
+  }
+  .HomePage__compilerNumber{
+    margin-top: 50px;
+  }
+  .HomePage__containerCompilerTextCode{
+    margin-top: 50px;
+  }
+  .HomePage__compilerTextCode{
+    margin-top: 25px;
+  }
+  .HomePage__compilerNumber--margin{
+    font-size: 6px;
+  }
+  .HomePage__compilerTextCode2{
+    margin-top: 0%;
+    font-size: 6px;
+  }
+  .HomePage__compilerWrapperOutput {
+    padding-top: 20px;
+    font-size: 8px;
+  }
+  .HomePage__language{
+    font-size: 12px;
+  }
 }

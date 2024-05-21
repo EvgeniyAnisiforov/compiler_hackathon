@@ -87,7 +87,7 @@ const HomePage: FC<{}> = (): ReactElement => {
       <div className={style["HomePage__wrapper"]}>
         <div className={style["Homepage__containerHeader--flex"]}>
           <div className={style["HomePage__containerMenuAndIcon--flex"]}>
-            <div>
+            <div className={style["HomePage__containerButtonAnimationBackground"]}>
               <img onClick={()=>dispatch(setAnimation(!animationBackground))} src={animationBackground ? animationOn : animationOff} style={{width: "45px", height: "45px", cursor: "pointer" }}/>
             </div>
             <MenuColorIcon />
@@ -101,13 +101,20 @@ const HomePage: FC<{}> = (): ReactElement => {
             </button>
           </div>
         </div>
-
-        <div className={style["HomePage__wrapperCompiler--flex"]}>
+        <div className={style["HomePage__mobilRadioForm"]}>
           <RadioForm
-            language={(e) => setLanguage(e)}
-            defaultCode={(e) => setDefaultCode(e)}
-          />
-          <div>
+              language={(e) => setLanguage(e)}
+              defaultCode={(e) => setDefaultCode(e)}
+            />
+          </div>
+        <div className={style["HomePage__wrapperCompiler--flex"]}>
+          <div className={style["HomePage__pcRadioForm"]}>
+            <RadioForm
+              language={(e) => setLanguage(e)}
+              defaultCode={(e) => setDefaultCode(e)}
+            />
+          </div>
+          <div className={style["HomePage__WrapperContainerCompiler--flex"]}>
             <div className={style["HomePage__containerCompiler--flex"]}>
               <div
                 className={style["HomePage__compilerWrapper"]}
@@ -177,7 +184,7 @@ const HomePage: FC<{}> = (): ReactElement => {
       </div>
 
       {valueModalChart && <ModalChart close={(e) => setValueModalChart(e)} />}
-      {animationBackground && <AnimationBackground />}
+      {animationBackground && <div className={style["HomePage__animationBackground"]}><AnimationBackground /></div>}
     </div>
   )
 }

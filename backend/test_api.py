@@ -14,7 +14,7 @@ data = {
 json_string = json.dumps(data)
 
 # Определение URL для отправки запроса
-url = 'http://localhost:8000/compile/'
+url = 'http://localhost:8081/compile/'
 
 # Заголовки запроса
 headers = {
