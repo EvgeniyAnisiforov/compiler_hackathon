@@ -40,3 +40,45 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+
+@media (max-width: 1200px) {
+    /* Стили для экранов шириной 1200px и меньше */
+    .RadioForm__Icon{
+        width: 50px;
+        height: 50px;
+    }
+  }
+  
+  
+  @media (max-width: 1024px) {
+    /* Стили для экранов шириной 1024px и меньше */
+    .RadioForm__Icon{
+        width: 45px;
+        height: 45px;
+    }
+  }
+  
+  
+  @media (max-width: 768px) {
+    /* Стили для экранов шириной 768px и меньше */
+    .RadioForm__Icon{
+        width: 40px;
+        height: 40px;
+    }
+    .RadioFrom__mobileRadioForm{
+        display: flex;
+        justify-content: center;
+        margin: 30px;
+        /* width: 100%; */
+    }
+    .RadioForm__IconActive{
+        transform: translateY(-30px);
+        transition: transform 0.3s ease-in-out;
+    }
+  }
+  
+  @media (max-width: 425px) {
+      /* Стили для экранов шириной 425px и меньше */
+      
+    }

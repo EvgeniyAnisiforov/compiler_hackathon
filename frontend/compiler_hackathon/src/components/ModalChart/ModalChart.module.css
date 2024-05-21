@@ -27,3 +27,36 @@
     width: 70px;
     height: 70px;
 }
+
+@media (max-width: 1440px) {
+    /* Стили для экранов шириной 1440px и меньше */
+    
+  }
+  
+  
+  @media (max-width: 1200px) {
+    /* Стили для экранов шириной 1200px и меньше */
+  }
+  
+  
+  @media (max-width: 1024px) {
+    /* Стили для экранов шириной 1024px и меньше */
+    
+  }
+  
+  
+  @media (max-width: 768px) {
+    /* Стили для экранов шириной 768px и меньше */
+    .ModalChart__wrapperModal{
+        width: 400px;
+        height: 350px;
+    }
+  }
+  
+  @media (max-width: 425px) {
+      /* Стили для экранов шириной 425px и меньше */
+      .ModalChart__wrapperModal{
+        width: 300px;
+        height: 300px;
+    }
+    }
