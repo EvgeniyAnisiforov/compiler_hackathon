@@ -10,7 +10,8 @@ app = FastAPI(
         {"name": "users", "description": "Operations with users"},
         {"name": "statistics", "description": "Operations with statistics"},
         {"name": "compiler", "description": "Operations with compiler"},
-    ]
+    ],
+    root_path='/api'
 )
 
 app.include_router(compiler_router, prefix="/compile")
@@ -24,4 +25,4 @@ if __name__ == "__main__":
     # @app.on_event("shutdown")
     # async def shutdown():
     #     await database.disconnect()
-    uvicorn.run("main:app", host="localhost", port=8000, reload=True, workers=1, log_level="info")
+    uvicorn.run("main:app", host="localhost", port=8000, reload=True, log_level="info")
