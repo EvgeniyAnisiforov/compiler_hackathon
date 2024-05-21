@@ -26,6 +26,6 @@ async def register(user: UserCreate):
 async def login(user: UserAuth):
     user_info = CheckUser(user.login, user.password)
     if user_info:
-        return {"message": "Authentication successful"}
+        return user_info
     else:
         raise HTTPException(status_code=401, detail="Incorrect username or password")

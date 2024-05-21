@@ -38,12 +38,13 @@ def CreateUser(login, passwd, name, surname):
         return True
 
 
-# Проверка пользователя
 def CheckUser(login, passwd):
     with sqlite3.connect(DB_NAME) as db:
         user = db.execute("SELECT userID, name, surname FROM Users WHERE login = ? AND passwd = ?",
                           (login, passwd)).fetchone()
-        return user if user else False
+        if user:
+            return {"userID": user[0], "name": user[1], "surname": user[2]}
+        return False
 
 
 # Получить атрибуты пользователя
@@ -80,9 +81,25 @@ def SetAtrb(userID, **kwargs):
 
 
 
-# # Тестирование
-# Create_DB()
-# # CreateUser("8", "5", "oo", "oo") or CheckUser("8", "5")
-# # GetAtrb(1, "name", "RAM","yy")
-# SetAtrb(1,last_code="tratata",name="fun",thema_color="#rgb")
-# print(GetAtrb(1))
+# Создание базы данных и таблиц
+Create_DB()
+
+# Добавление пользователей
+CreateUser("user1", "password1", "John", "Doe")
+CreateUser("user2", "password2", "Jane", "Smith")
+CreateUser("user3", "password3", "Alice", "Johnson")
+
+# Добавление настроек для каждого пользователя
+# Это пример того, как вы можете добавлять или изменять настройки
+userID1 = CheckUser("user1", "password1")['userID']
+userID2 = CheckUser("user2", "password2")['userID']
+userID3 = CheckUser("user3", "password3")['userID']
+
+SetAtrb(userID1, last_code="print('Hello, world!')", lang="python", RAM=512, time_python=1.5, time_java=0.0, time_cpp=0.0, time_js=0.0)
+SetAtrb(userID2, last_code="System.out.println('Hello, world!');", lang="java", RAM=1024, time_python=0.0, time_java=2.0, time_cpp=0.0, time_js=0.0)
+SetAtrb(userID3, last_code="#include <iostream>\nint main() { std::cout << 'Hello, world!'; return 0; }", lang="cpp", RAM=2048, time_python=0.0, time_java=0.0, time_cpp=3.5, time_js=0.0)
+
+# Проверка добавленных данных
+print(GetAtrb(userID1, "last_code", "lang", "RAM", "time_python", "time_java", "time_cpp", "time_js"))
+print(GetAtrb(userID2, "last_code", "lang", "RAM", "time_python", "time_java", "time_cpp", "time_js"))
+print(GetAtrb(userID3, "last_code", "lang", "RAM", "time_python", "time_java", "time_cpp", "time_js"))
