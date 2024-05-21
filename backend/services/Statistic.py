@@ -1,9 +1,11 @@
+from fastapi import HTTPException
+
 from db import GetAtrb, SetAtrb
 from models import Time, CodeRequest, ProgrammingLanguage
 
 
 class Statistic:
-    def time_stat(self, user_id: int):
+    def get_time(self, user_id: int):
         times = GetAtrb(user_id, "time_python", "time_java", "time_cpp", "time_js")
         if not times:
             return False
@@ -20,7 +22,11 @@ class Statistic:
         code_info = GetAtrb(user_id, "last_code", "lang")
         if not code_info or code_info[0] is None or code_info[1] is None:
             return False
-        return CodeRequest(language=ProgrammingLanguage[code_info[1]], code=code_info[0])
+        try:
+            language = ProgrammingLanguage[code_info[1]]
+        except KeyError:
+            raise HTTPException(status_code=400, detail="Invalid or missing programming language.")
+        return CodeRequest(language=language, code=code_info[0])
 
     def update_code(self, user_id: int, lang: str, code: str):
         update_result = SetAtrb(user_id, last_code=code, lang=lang)

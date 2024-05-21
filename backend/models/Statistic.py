@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from Compiler import ProgrammingLanguage
+from models.Compiler import ProgrammingLanguage
 
 
 class Time(BaseModel):

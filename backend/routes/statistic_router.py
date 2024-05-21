@@ -15,13 +15,17 @@ statistic = Statistic()
     response_model=Time
 )
 async def get_time(user_id: int):
-    result = statistic.time_stat(user_id)
+    result = statistic.get_time(user_id)
     if not result:
         raise HTTPException(status_code=404, detail="User not found or no time data available")
     return result
 
 
-@router.post("/update_time/{user_id}")
+@router.put(
+    "/update_time/{user_id}",
+    description="Возвращает время",
+    tags=["statistics"]
+)
 async def update_time(user_id: int, update_request: UpdateTimeRequest):
     update_result = statistic.update_time(user_id=user_id, lang=update_request.language.value,
                                           time=update_request.time)
@@ -37,13 +41,18 @@ async def update_time(user_id: int, update_request: UpdateTimeRequest):
     response_model=CodeRequest
 )
 async def get_code(user_id: int):
-    result = statistic.get_code(user_id)
-    if not result:
-        raise HTTPException(status_code=404, detail="User not found or no code data available")
-    return result
+    try:
+        result = statistic.get_code(user_id)
+        if not result:
+            raise HTTPException(status_code=404, detail="User not found or no code data available")
+        return result
+    except HTTPException as e:
+        raise e
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.post(
+@router.put(
     "/update_code/{user_id}",
     description="Обновляет последний код",
     tags=["code"],
