@@ -11,7 +11,6 @@ router = APIRouter()
     tags=["users"]
 )
 async def register(user: UserCreate):
-    # Проверка существует ли уже пользователь
     if CreateUser(user.login, user.password, user.name, user.surname):
         return {"message": f"User {user.login} created successfully"}
     else:
