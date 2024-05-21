@@ -1,5 +1,8 @@
 .BarChart__h2{
     padding: 20px;
+    font-size: 18px;
+
+    margin: 0 auto 20px;
 }
 
 canvas{
@@ -7,3 +10,44 @@ canvas{
     height: 80% !important;
     margin: 0 auto;
 }
+
+@media (max-width: 1440px) {
+    /* Стили для экранов шириной 1440px и меньше */
+    
+  }
+  
+  
+  @media (max-width: 1200px) {
+    /* Стили для экранов шириной 1200px и меньше */
+  }
+  
+  
+  @media (max-width: 1024px) {
+    /* Стили для экранов шириной 1024px и меньше */
+    
+  }
+  
+  
+  @media (max-width: 768px) {
+    /* Стили для экранов шириной 768px и меньше */
+    canvas{
+        width: 80% !important;
+        height: 80% !important;
+        margin: 0 auto;
+    }
+    .BarChart__h2{
+        font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 425px) {
+      /* Стили для экранов шириной 425px и меньше */
+      canvas{
+        width: 90% !important;
+        height: 100% !important;
+        margin: 0 auto;
+    }
+    .BarChart__h2{
+        font-size: 10px;
+    }
+    }
