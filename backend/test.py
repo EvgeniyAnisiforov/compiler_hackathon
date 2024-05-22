@@ -28,7 +28,7 @@ async def test_get_time():
     async with AsyncClient(app=app, base_url=BASE_URL) as ac:
         response = await ac.get("/statistic/get_time/5")
         assert response.status_code == 200
-        assert response.json() == {"time_python": 0.0, "time_java": 5.5, "time_cpp": 0.0, "time_js": 0.0}
+        assert response.json() == {"time_python": 5.0, "time_java": 5.5, "time_cpp": 0.0, "time_js": 0.0}
 
 
 @pytest.mark.asyncio

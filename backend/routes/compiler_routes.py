@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from backend.models.Compiler import CodeRequest
 from backend.compilers.CompilerExec import Compiler
+import time
 
 router = APIRouter()
 compiler = Compiler()
@@ -13,8 +14,10 @@ compiler = Compiler()
 )
 async def compile_code_route(request: CodeRequest):
     try:
+        start_time = time.time()
         result = compiler.sort(request.language.value, request.code)
-        return {"result": result}
+        execution_time = time.time() - start_time
+        return {"result": result, f"time_{request.language.value}": execution_time}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка компиляции: {str(e)}")
 
