@@ -17,7 +17,7 @@ async def compile_code_route(request: CodeRequest):
         start_time = time.time()
         result = compiler.sort(request.language.value, request.code)
         execution_time = time.time() - start_time
-        return {"result": result, f"time_{request.language.value}": execution_time}
+        return {"result": result, "time": execution_time}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Ошибка компиляции: {str(e)}")
 
