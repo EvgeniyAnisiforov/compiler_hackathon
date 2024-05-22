@@ -1,4 +1,56 @@
 Дока по методам:
+
+Пример обработки:
+Метод получения времени
+get http://localhost:8000/api/statistic/get_time/7(7-userid)
+	
+Response body
+если ок
+200{
+  "time_python": 0,
+  "time_java": 5.5,
+  "time_cpp": 0,
+  "time_js": 0
+}
+иначе
+404{
+  "detail": "User not found or no time data available"
+}
+
+Код:
+interface TimeStatistics {
+  time_python: number;
+  time_java: number;
+  time_cpp: number;
+  time_js: number;
+}
+
+async function fetchTimeStatistics(userId: number): Promise<TimeStatistics | null> {
+  const response = await fetch(`http://localhost:8000/api/statistic/get_time/${userId}`);
+
+  if (response.ok) {
+    // Если статус в диапазоне 200-299
+    const data: TimeStatistics = await response.json();
+    console.log("Данные времени успешно получены:", data);
+    return data;
+  } else if (response.status === 404) {
+    // Пропускаем обработку для статуса 404
+    console.log("Пользователь не найден или данных нет, статус 404.");
+    return null;
+  } 
+}
+
+// Использование функции
+fetchTimeStatistics(7)
+  .then(response => {
+    if (response) {
+      console.log(response);
+    }
+  })
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<</////////////////////////////ДОКА//////////////////>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ---------------------------------------
 Метод регистрации
 post http://localhost:8000/api/users/register/
