@@ -1,3 +1,4 @@
+import { FC, ReactElement } from "react"
 import { Bar } from 'react-chartjs-2';
 import { useState } from 'react'; 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, } from 'chart.js'; 
@@ -13,10 +14,13 @@ ChartJS.register(
     Legend 
   ); 
 
-const BarChart = () => {
+  interface TypeProps  {
+    data: Array<number>
+  }
 
-    const [dataTime, _setDataTime] = useState([12, 19, 3, 5])
-    const data = {
+  const BarChart: FC<TypeProps> = (props): ReactElement => {
+    const [dataTime, _setDataTime] = useState(Object.values(props.data))
+    const dataChart = {
       labels: ['Python', 'Java', 'C++', 'JavaScript'],
       datasets: [
         {
@@ -42,7 +46,7 @@ const BarChart = () => {
       <div>
         <h2 className={style["BarChart__h2"]}>Скорость выполнения программ</h2>
         <div>
-            <Bar data={data} options={options}/>
+            <Bar data={dataChart} options={options}/>
         </div>
       </div>
     );

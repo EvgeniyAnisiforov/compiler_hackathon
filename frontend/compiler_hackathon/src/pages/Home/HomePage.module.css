@@ -214,6 +214,10 @@
 .HomePage__mobilRadioForm {
   display: none;
 }
+.HomePage__userText{
+    color: #ffffff;
+    padding: 15px;
+}
 
 @media (max-width: 1440px) {
   /* Стили для экранов шириной 1440px и меньше */
@@ -437,10 +441,13 @@
     margin-top: 50px;
   }
   .HomePage__compilerTextCode{
-    margin-top: 25px;
+    margin-top: 0px;
   }
   .HomePage__compilerTextCode2{
     margin-top: 0%;
+  }
+  .HomePage__userText{
+    font-size: 12px;
   }
 }
 
@@ -480,5 +487,8 @@
   }
   .HomePage__language{
     font-size: 12px;
+  }
+  .HomePage__userText{
+    font-size: 10px;
   }
 }
