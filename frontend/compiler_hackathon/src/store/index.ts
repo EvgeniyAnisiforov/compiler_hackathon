@@ -17,11 +17,12 @@ import { getTimeApi } from "./query/GET/getTimeApi"
 import { postAuthApi } from "./query/POST/postAuthApi"
 import { postRegApi } from "./query/POST/postRegApi"
 import { postCodeApi } from "./query/POST/postCodeApi"
-
+import { statusAuthSlice } from "./statusAuth-slice"
 
 const rootReducer = combineReducers({
   setColor: colorSelectorSlice.reducer,
   animationBackground: animationBackgroundSlice.reducer,
+  statusAuth: statusAuthSlice.reducer,
   [getCodeApi.reducerPath]: getCodeApi.reducer,
   [getTimeApi.reducerPath]: getTimeApi.reducer,
   [postAuthApi.reducerPath]: postAuthApi.reducer,
@@ -37,7 +38,9 @@ const persistConfig = {
     getTimeApi.reducerPath,
     postAuthApi.reducerPath,
     postCodeApi.reducerPath,
-    postRegApi.reducerPath
+    postRegApi.reducerPath,
+    statusAuthSlice.reducerPath,
+    'statusAuth'
   ],
 }
 
@@ -55,7 +58,7 @@ const store = configureStore({
       getTimeApi.middleware,
       postAuthApi.middleware,
       postRegApi.middleware,
-      postCodeApi.middleware,
+      postCodeApi.middleware
     ),
   devTools: true,
 })

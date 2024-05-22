@@ -1,7 +1,7 @@
 import { FC, ReactElement } from "react"
 import { useNavigate } from "react-router-dom"
 import style from "./RegistrationPage.module.css"
-import { Input } from "antd"
+import { Input,message } from "antd"
 import MenuColorIcon from "../../components/MenuColorIcon"
 import { useAppSelector, useAppDispatch } from "../../hook/hookRTK"
 import AnimationBackground from "../../components/Animation/AnimationBackground"
@@ -9,6 +9,8 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import animationOn from '../../assets/img/animationOn.svg'
 import animationOff from '../../assets/img/animationOff.svg'
 import { setAnimation } from "../../store/animationBackground-slice"
+import { usePostRegMutation } from "../../store/query/POST/postRegApi"
+import { useState } from "react"
 
 type Inputs = {
   login: string
@@ -39,13 +41,20 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
   const animationBackground = useAppSelector((state)=> state.animationBackground.value)
   const backgroundColor = useAppSelector((state) => state.setColor.value)
 
+  const [reg] = usePostRegMutation(); 
+     const onSubmit: SubmitHandler<Inputs> = async (dataInput:any) => {
+       try {
+         const result = await reg({ name: dataInput.name, surname: dataInput.surname, login: dataInput.login, password: dataInput.password }).unwrap();
+         // Если запрос успешен, обрабатываем данные
+         if (result) {
+          goLogin()
+         }
+       } catch (error) {
+        message.info("Этот пользователь уже существует")
+       }
+       reset();
+     };
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // Здесь можно обработать данные формы
-    console.log(data)
-    alert(JSON.stringify(data))
-    reset()
-  }
 
   return (
     <div className={style["area"]} style={{ backgroundColor: backgroundColor }}>
@@ -97,8 +106,8 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
                 rules={{
                   required: "Поле обязательно к заполнению",
                   minLength: {
-                    value: 8,
-                    message: "Минимальная длина 8 символов",
+                    value: 5,
+                    message: "Минимальная длина 5 символов",
                   },
                 }}
                 render={({ field }) => <Input {...field} placeholder="Логин" className={style["RegistrationPage__input--fontSize"]}/>}
@@ -116,8 +125,8 @@ const RegistrationPage: FC<{}> = (): ReactElement => {
                 rules={{
                   required: "Поле обязательно к заполнению",
                   minLength: {
-                    value: 8,
-                    message: "Минимальная длина 8 символов",
+                    value: 5,
+                    message: "Минимальная длина 5 символов",
                   },
                 }}
                 render={({ field }) => (

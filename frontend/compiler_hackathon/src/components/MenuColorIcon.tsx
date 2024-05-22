@@ -12,7 +12,6 @@ const MenuColorIcon: React.FC = () => {
   const handleClick = useCallback(
     ({ key }:{key:string}) => {
       message.info(`У вас прекрасный вкус!`)
-      console.log("f")
       dispatch(setColor(key))
     },
     [dispatch]

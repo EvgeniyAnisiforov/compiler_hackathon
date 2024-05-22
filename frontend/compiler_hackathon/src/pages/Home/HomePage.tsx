@@ -12,6 +12,8 @@ import animationOff from '../../assets/img/animationOff.svg'
 // import AnimationLoading from "../../components/Animation/AnimationLoading"
 import AnimationBackground from "../../components/Animation/AnimationBackground"
 import { setAnimation } from "../../store/animationBackground-slice"
+import AnimationLoading from "../../components/Animation/AnimationLoading"
+import { usePostCodeMutation } from "../../store/query/POST/postCodeApi"
 
 
 const HomePage: FC<{}> = (): ReactElement => {
@@ -19,6 +21,21 @@ const HomePage: FC<{}> = (): ReactElement => {
   const dispatch = useAppDispatch()
   const backgroundColor = useAppSelector((state) => state.setColor.value)
   const animationBackground = useAppSelector((state)=> state.animationBackground.value)
+  const statusAuth = useAppSelector(state => state.statusAuth.value)
+
+  const isLoading = true
+  const [code,] = usePostCodeMutation()
+
+  const handleStartCode = async () => {
+    if (codeProgramm) {
+        const result = await code(codeProgramm).unwrap();
+        setExecutedCode(result); 
+    }
+  };
+
+  
+
+  const [executedCode, setExecutedCode] = useState("Нажмите запустить, что бы увидеть результат")
 
   const navigate = useNavigate()
   const goRegistr = () => navigate("/registration")
@@ -64,6 +81,15 @@ const HomePage: FC<{}> = (): ReactElement => {
     }
   };
 
+  const handleSpeed = () => {
+    if(statusAuth){
+      setValueModalChart(true)
+    }
+    else{
+      goHome()
+    }
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       if (lineNumbersRef.current && textAreaRef.current) {
@@ -92,14 +118,14 @@ const HomePage: FC<{}> = (): ReactElement => {
             </div>
             <MenuColorIcon />
           </div>
-          <div>
+          {statusAuth.status ? <p className={style["HomePage__userText"]}>{statusAuth.surname + ' '+ statusAuth.name}</p> : <div>
             <button onClick={goHome} className={style["HomePage__button"]}>
               Войти
             </button>
             <button onClick={goRegistr} className={style["HomePage__button"]}>
               Регистрация
             </button>
-          </div>
+          </div>}
         </div>
         <div className={style["HomePage__mobilRadioForm"]}>
           <RadioForm
@@ -163,17 +189,14 @@ const HomePage: FC<{}> = (): ReactElement => {
 
               <div className={style["HomePage__containerOutput"]}>
                 <div className={style["HomePage__compilerWrapperOutput"]}>
-                  Нажмите запустить, что бы увидеть результат
-                  {/* <div>
-                    <AnimationLoading />
-                  </div> */}
+                  {isLoading ? <div><AnimationLoading/></div> : <p>{executedCode}</p>}
                 </div>
               </div>
             </div>
             <div className={style["HomePage__containerButton"]}>
-              <button className={style["HomePage__button"]}>запустить</button>
+              <button onClick={handleStartCode} className={style["HomePage__button"]}>запустить</button>
               <button
-                onClick={() => setValueModalChart(true)}
+                onClick={handleSpeed}
                 className={style["HomePage__button"]}
               >
                 скорость

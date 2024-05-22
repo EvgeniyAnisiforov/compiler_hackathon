@@ -6,7 +6,7 @@ export const postRegApi = createApi({
     endpoints: (build) => ({
         postReg: build.mutation({
             query: (body) => ({
-                url: 'reg',
+                url: 'api/users/register',
                 method: 'POST',
                 body,
             }),
