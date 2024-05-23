@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes.compiler_routes import router as compiler_router
@@ -18,7 +18,7 @@ app = FastAPI(
 
 # Настройка CORS
 origins = [
-    "http://localhost:5173", # Домен вашего фронтенда
+   "*"
 ]
 
 app.add_middleware(
@@ -37,3 +37,21 @@ if __name__ == "__main__":
     uvicorn.run("main:app", host="localhost", port=8000, reload=True, log_level="info")
 
 
+#@app.get("/")
+#def read_root():
+#    return {"message": "Welcome to the Compiler Hackathon API"}
+
+#def get_db():
+#    db = SessionLocal()
+#    try:
+#        yield db
+#    finally:
+#        db.close()
+
+#@app.get("/test-db")
+#def test_db(db: Session = Depends(get_db)):
+#    try:
+#        result = db.execute("SELECT 1")
+#        return {"status": "success", "result": result.fetchone()}
+#    except Exception as e:
+#        return {"status": "error", "message": str(e)}

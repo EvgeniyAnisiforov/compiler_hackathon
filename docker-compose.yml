@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./DBStandart.db
+    volumes:
+      - ./backend:/app
+      - ./DBStandart.db:/app/DBStandart.db

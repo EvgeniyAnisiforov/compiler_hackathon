@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from backend.models.User import UserAuth, UserCreate
+from models.User import UserAuth, UserCreate
 from db import CreateUser, CheckUser
 
 router = APIRouter()

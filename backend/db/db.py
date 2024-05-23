@@ -1,7 +1,7 @@
 import os
 import sqlite3
 
-DB_NAME = os.path.join(os.path.dirname(__file__), '../../DBStandart.db')
+DB_NAME = os.path.join(os.path.dirname(__file__), '../DBStandart.db')
 
 
 # Создание таблиц

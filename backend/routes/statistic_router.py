@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from backend.models.Statistic import Time, UpdateTimeRequest
-from backend.services.Statistic import Statistic
+from models.Statistic import Time, UpdateTimeRequest
+from services.Statistic import Statistic
 from db import SetAtrb
 from models import CodeRequest
 

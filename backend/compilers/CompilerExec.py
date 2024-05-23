@@ -1,7 +1,7 @@
 import subprocess
 import tempfile
 
-from backend.models.Compiler import ProgrammingLanguage
+from models.Compiler import ProgrammingLanguage
 
 
 class Compiler:
